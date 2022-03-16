@@ -1,0 +1,6 @@
+.dark-mode-toggle {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  transform: scale(0.9);
+}

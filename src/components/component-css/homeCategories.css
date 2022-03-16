@@ -1,0 +1,28 @@
+.home-categories {
+  margin: 10rem 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.category-card {
+  width: 22.5rem;
+  height: 18.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  background-color: var(--black);
+  color: var(--white);
+}
+
+.category-card h2 {
+  font-weight: 400;
+}
+
+@media screen and (max-width: 1000px) {
+  .home-categories {
+    margin: 10rem 15rem;
+  }
+}
