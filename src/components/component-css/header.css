@@ -1,0 +1,32 @@
+header {
+  height: 6rem;
+}
+
+.navigation-container {
+  background-color: var(--black);
+}
+
+.search-desktop {
+  display: block;
+}
+
+.search-mobile {
+  display: none;
+}
+
+@media screen and (max-width: 680px) {
+  header {
+    height: 10.5rem;
+    background-color: var(--black);
+  }
+
+  .search-desktop {
+    display: none;
+  }
+
+  .search-mobile {
+    display: block;
+    width: 90%;
+    margin: auto;
+  }
+}

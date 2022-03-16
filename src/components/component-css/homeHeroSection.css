@@ -1,0 +1,29 @@
+.hero-section {
+  width: 100vw;
+  height: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: url("../../assets/images/heroImage.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-text {
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.hero-text-off {
+  font-size: 3.2rem;
+}
+
+.hero-text-small {
+  font-size: 2.5rem;
+}
+
+.btn-hero {
+  background: var(--black);
+}
