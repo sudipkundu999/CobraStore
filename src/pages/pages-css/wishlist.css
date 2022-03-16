@@ -1,0 +1,47 @@
+.wishlist-main {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heading {
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.card {
+  background-color: var(--white);
+  margin: 2rem;
+}
+
+.cards-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  .wishlist-main {
+    height: auto;
+  }
+
+  .heading {
+    margin-bottom: 0;
+  }
+
+  .cards-wrapper {
+    flex-direction: column;
+    margin-bottom: 5rem;
+  }
+}
+
+/* @media screen and (max-width: 670px) {
+  .navigation-container {
+    gap: 0rem;
+  }
+
+  .navigation-container input {
+    display: none;
+  }
+} */
