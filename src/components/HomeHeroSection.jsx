@@ -7,7 +7,7 @@ export const HomeHeroSection = () => {
       <div className="hero-text">
         NEW USER OFFER <br />
         <span className="hero-text-small"> Upto </span>
-        <span className="hero-text-off">40% OFF</span>
+        <span className="hero-text-off"> 40% OFF</span>
         <span className="hero-text-small"> on all products </span>
       </div>
       <Link to="/products">
