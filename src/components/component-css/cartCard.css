@@ -1,0 +1,38 @@
+.cart-main .card {
+  background-color: var(--white);
+  height: 27rem;
+  margin: 2rem 0;
+  transform: scale(0.9);
+}
+
+.card-quantity {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.cart-main .card-cta {
+  position: static;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-main .card-cta .btn {
+  width: 30rem;
+}
+
+.cart-main .btn-outline {
+  color: var(--secondary);
+  background-color: transparent;
+  border: 1px solid var(--secondary);
+}
+
+@media screen and (max-width: 900px) {
+  .cart-main .card {
+    max-width: 90vw;
+    min-width: fit-content;
+  }
+
+  .cart-main .card-cta .btn {
+    width: 100%;
+  }
+}

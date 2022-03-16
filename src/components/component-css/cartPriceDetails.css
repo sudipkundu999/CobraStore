@@ -1,0 +1,29 @@
+.cart-price-details {
+  width: 35rem;
+  height: 25rem;
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  overflow: hidden;
+}
+
+.price-container {
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 1rem;
+}
+
+.price {
+  margin-left: auto;
+  font-weight: 400;
+}
+
+.cart-price-details .btn {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: var(--yellow-bright);
+  color: var(--black);
+  border-radius: 0;
+}
