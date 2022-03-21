@@ -30,7 +30,7 @@ export const ProductCard = ({ product }) => {
           </span>
         </div>
         <span className="card-rating">
-          {rating} <i className="fas fa-star"></i>
+          {rating.toFixed(1)} <i className="fas fa-star"></i>
         </span>
       </div>
       <div className="card-cta">
