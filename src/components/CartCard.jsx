@@ -1,12 +1,12 @@
 import "./component-css/cartCard.css";
 
-export const CartCard = ({ props }) => {
-  const { id, name, author, price, discount, img, oldNew } = props;
+export const CartCard = ({ product }) => {
+  const { id, name, author, price, image, badge } = product;
   return (
     <div className="card card-horizontal" key={id}>
-      {oldNew && <span className="card-badge">New</span>}
+      {badge && <span className="card-badge">{badge}</span>}
       <div className="card-image-container">
-        <img src={img} alt={name} />
+        <img src={image} alt={name} />
       </div>
       <div className="card-details-container">
         <div className="card-title">{name}</div>
@@ -14,7 +14,10 @@ export const CartCard = ({ props }) => {
         <div className="card-price">
           <span className="card-current-price">₹{price.current}</span>
           <span className="card-actual-price">₹{price.actual}</span>
-          <span className="card-price-off">{discount}% off</span>
+          <span className="card-price-off">
+            {Math.round(((price.actual - price.current) / price.actual) * 100)}%
+            off
+          </span>
         </div>
         <div className="card-quantity">
           Quantity :

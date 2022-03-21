@@ -3,7 +3,12 @@ import "./component-css/homeHeroSection.css";
 
 export const HomeHeroSection = () => {
   return (
-    <div className="hero-section">
+    <div
+      className="hero-section"
+      style={{
+        background: `url(${process.env.PUBLIC_URL + "/images/heroImage.jpg"})`,
+      }}
+    >
       <div className="hero-text">
         NEW USER OFFER <br />
         <span className="hero-text-small"> Upto </span>

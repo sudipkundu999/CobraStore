@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import { useDocumentTitle } from "../utils";
 import "./pages-css/login.css";
 
 export const Signup = () => {
+  useDocumentTitle("Signup");
+
   return (
     <main className="login-signup-main">
       <div className="login-container">

@@ -1,6 +1,7 @@
 .filter {
   display: flex;
   flex-direction: column;
+  justify-content: baseline;
   width: 20rem;
   padding: 2rem 0;
   border-bottom: 1px solid var(--black);
@@ -23,7 +24,13 @@
   font-size: 1.5rem;
 }
 
-label {
+.products-filter-aside label {
   font-size: 1.5rem;
   cursor: pointer;
+  display: block;
+  padding-top: 7px;
+}
+
+.products-filter-aside input {
+  margin-right: 5px;
 }

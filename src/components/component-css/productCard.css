@@ -1,0 +1,11 @@
+.card-rating {
+  position: absolute;
+  right: 10px;
+  top: 72.5%;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+.card-rating i {
+  color: #ffdf00;
+}
