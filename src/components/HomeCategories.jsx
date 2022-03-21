@@ -1,12 +1,15 @@
 import "./component-css/homeCategories.css";
-import categoryImage from "../assets/images/categoryImage.jpg";
 import { Link } from "react-router-dom";
 
 const HomeCategory = ({ category }) => {
   return (
     <div className="category-card">
       <Link to="/products">
-        <img className="img-fluid" src={categoryImage} alt="categories" />
+        <img
+          className="img-fluid"
+          src={process.env.PUBLIC_URL + "/images/categoryImage.jpg"}
+          alt="categories"
+        />
         <h2>{category}</h2>
       </Link>
     </div>

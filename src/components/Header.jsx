@@ -15,7 +15,7 @@ export const Header = () => {
         />
         <div className="nav-right">
           <a href="/">
-            <button class="btn btn-secondary">Logout</button>
+            <button className="btn btn-secondary">Logout</button>
           </a>
           <Link className="nav-links" to="/login">
             <i className="fas fa-user fa-2x"></i>

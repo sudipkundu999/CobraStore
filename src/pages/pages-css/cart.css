@@ -7,6 +7,11 @@
   align-items: center;
 }
 
+.cart-items {
+  max-height: 95%;
+  overflow-y: scroll;
+}
+
 @media screen and (max-width: 900px) {
   .cart-main {
     flex-direction: column;
