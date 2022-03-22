@@ -14,9 +14,9 @@ export const Header = () => {
           className="nav-search search-desktop"
         />
         <div className="nav-right">
-          <a href="/">
-            <button className="btn btn-secondary">Logout</button>
-          </a>
+          <Link to="/mock">
+            <button className="btn btn-secondary">Mockman</button>
+          </Link>
           <Link className="nav-links" to="/login">
             <i className="fas fa-user fa-2x"></i>
             <span>User</span>
