@@ -33,6 +33,13 @@ header {
   gap: 2rem;
 }
 
+.loading-screen {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 5rem;
+}
+
 @media screen and (max-width: 740px) {
   .products-body {
     grid-template-areas:
