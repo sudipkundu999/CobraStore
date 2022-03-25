@@ -1,35 +1,62 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/auth-context";
 import { useDocumentTitle } from "../utils";
 import "./pages-css/login.css";
 
 export const Login = () => {
   useDocumentTitle("Login");
+  const { formData, setFormData, onSubmitLogin } = useAuth();
+
+  const loginAsAdmin = () => {
+    setFormData((prev) => ({
+      ...prev,
+      email: "sudipkundu@cobrastore.com",
+      password: "sudipkundu",
+    }));
+  };
 
   return (
     <main className="login-signup-main">
       <div className="login-container">
         <h2>Login</h2>
-        <form action="" className="login-form">
-          <label>Email address</label>
-          <input
-            className="email"
-            type="email"
-            id="login-email"
-            placeholder="xyz@neog.camp"
-          />
-          <label htmlFor="login-password">Password</label>
-          <input
-            className="password"
-            type="password"
-            id="login-password"
-            placeholder="********"
-          />
+        <form onSubmit={(e) => onSubmitLogin(e)} className="login-form">
+          <label>
+            Email address
+            <input
+              className="email"
+              type="email"
+              id="login-email"
+              placeholder="user@cobrastore.com"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, email: e.target.value }))
+              }
+            />
+          </label>
+          <label>
+            Password
+            <input
+              className="password"
+              type="password"
+              id="login-password"
+              placeholder="********"
+              value={formData.password}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, password: e.target.value }))
+              }
+            />
+          </label>
           <div className="login-password-cta">
-            <input type="checkbox" id="login-remember-me" />
-            <label htmlFor="login-remember-me">Remember me</label>
-            <a href="/" className="forgot-password">
-              Forgot your password?
-            </a>
+            <label>
+              <input type="checkbox" id="login-remember-me" defaultChecked />
+              Remember me
+            </label>
+            <div
+              className="btn btn-link admin-login"
+              onClick={() => loginAsAdmin()}
+            >
+              Login as Admin
+            </div>
           </div>
           <input
             type="submit"
@@ -38,7 +65,7 @@ export const Login = () => {
           />
         </form>
         <Link to="/signup" className="new-account">
-          Create a new account {">"}
+          Create a new account &gt;
         </Link>
       </div>
     </main>
