@@ -36,9 +36,12 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (responseLogin !== undefined) {
       setUserName(responseLogin.foundUser.firstName);
+      notifySuccess("Login Successful");
       localStorage.setItem("cobraToken", responseLogin.encodedToken);
+      setTimeout(() => {
+        navigate("/products");
+      }, 1500);
     }
-    return () => notifySuccess("Login Successful") && navigate("/products");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [responseLogin]);
   useEffect(
@@ -52,6 +55,7 @@ const AuthProvider = ({ children }) => {
     error: errorSignup,
     operation: operationSignup,
   } = useAxios();
+
   const onSubmitSignup = (e) => {
     e.preventDefault();
     operationSignup({
@@ -66,14 +70,19 @@ const AuthProvider = ({ children }) => {
       },
     });
   };
+
   useEffect(() => {
     if (responseSignup !== undefined) {
       setUserName(formData.firstName);
+      notifySuccess("Signup Successful");
       localStorage.setItem("cobraToken", responseSignup.encodedToken);
+      setTimeout(() => {
+        navigate("/products");
+      }, 1500);
     }
-    return () => notifySuccess("Signup Successful") && navigate("/products");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [responseSignup]);
+
   useEffect(
     () => errorSignup !== "" && notifyError("Email Already Exists"),
     [errorSignup]
@@ -97,11 +106,8 @@ const AuthProvider = ({ children }) => {
     responseVerifyUser !== undefined &&
       setTimeout(() => {
         setUserName(responseVerifyUser.user.firstName);
-      }, 3000);
-    return () =>
-      setTimeout(() => {
-        notifySuccess("You're already logged in");
-      }, 2000);
+        notifySuccess(`Logged in as ${responseVerifyUser.user.firstName}`);
+      }, 1000);
   }, [responseVerifyUser]);
 
   return (
