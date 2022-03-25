@@ -1,14 +1,13 @@
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { productReducerFunc } from "../reducers";
 import { initialStateOfProductsFilter, sortByPriceFunc } from "../utils";
 import { useAxios } from "../utils/useAxios";
-
-const {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  useReducer,
-} = require("react");
 
 const ProductContext = createContext();
 

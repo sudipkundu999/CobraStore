@@ -13,3 +13,5 @@ export {
   initialStateOfProductsFilter,
   sortByPriceFunc,
 } from "./productFilterUtils";
+
+export { addToWishlist, removeFromWishlist } from "./wishlistUtils";

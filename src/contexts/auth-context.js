@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("cobraToken", responseLogin.encodedToken);
       setTimeout(() => {
         navigate("/products");
-      }, 1500);
+      }, 250);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [responseLogin]);
@@ -78,7 +78,7 @@ const AuthProvider = ({ children }) => {
       localStorage.setItem("cobraToken", responseSignup.encodedToken);
       setTimeout(() => {
         navigate("/products");
-      }, 1500);
+      }, 250);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [responseSignup]);
@@ -106,7 +106,7 @@ const AuthProvider = ({ children }) => {
     responseVerifyUser !== undefined &&
       setTimeout(() => {
         setUserName(responseVerifyUser.user.firstName);
-        notifySuccess(`Logged in as ${responseVerifyUser.user.firstName}`);
+        notifySuccess(`Welcome back ${responseVerifyUser.user.firstName}`);
       }, 1000);
   }, [responseVerifyUser]);
 
