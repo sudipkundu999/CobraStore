@@ -4,16 +4,25 @@ import { useProducts } from "../contexts";
 
 const HomeCategory = ({ category }) => {
   const navigate = useNavigate();
+  const { productReducerDispatch: dispatch } = useProducts();
 
   return (
     <div
       className="category-card"
-      onClick={() =>
-        navigate({
-          pathname: "/products",
-          search: `?category=${category}`,
-        })
-      }
+      // This code is for future use when I will implement useSearchParams() in productFilter.jsx
+      // onClick={() =>
+      //   navigate({
+      //     pathname: "/products",
+      //     search: `?category=${category}`,
+      //   })
+      // }
+      onClick={() => {
+        dispatch({
+          type: "FILTER_BY_CATEGORY_FROM_HOMEPAGE",
+          payload: category,
+        });
+        navigate("/products");
+      }}
     >
       <img
         className="img-fluid"
