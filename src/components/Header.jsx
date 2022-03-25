@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/auth-context";
 import "./component-css/header.css";
 
 export const Header = () => {
+  const { userName } = useAuth();
+
   return (
     <header>
       <div className="navigation-container">
@@ -19,7 +22,7 @@ export const Header = () => {
           </Link>
           <Link className="nav-links" to="/login">
             <i className="fas fa-user fa-2x"></i>
-            <span>User</span>
+            <span>{userName}</span>
           </Link>
           <Link className="nav-links" to="/wishlist">
             <i className="fas fa-heart fa-2x"></i>

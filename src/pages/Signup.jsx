@@ -1,33 +1,67 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/auth-context";
 import { useDocumentTitle } from "../utils";
 import "./pages-css/login.css";
 
 export const Signup = () => {
   useDocumentTitle("Signup");
+  const { formData, setFormData, onSubmitSignup } = useAuth();
 
   return (
     <main className="login-signup-main">
-      <div className="login-container">
+      <div className="login-container signup-container">
         <h2>Signup</h2>
-        <form action="" className="login-form">
-          <label htmlFor="login-email">Email address</label>
-          <input
-            className="email"
-            type="email"
-            id="login-email"
-            placeholder="xyz@neog.camp"
-          />
-          <label htmlFor="login-password">Password</label>
-          <input
-            className="password"
-            type="password"
-            id="login-password"
-            placeholder="********"
-          />
+        <form onSubmit={(e) => onSubmitSignup(e)} className="login-form">
+          <label>
+            First name
+            <input
+              className="signup-text-input"
+              placeholder="Sudip"
+              type="text"
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, firstName: e.target.value }))
+              }
+            />
+          </label>
+          <label>
+            Last name
+            <input
+              className="signup-text-input"
+              placeholder="Kundu"
+              type="text"
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, lastName: e.target.value }))
+              }
+            />
+          </label>
+          <label>
+            Email address
+            <input
+              className="email"
+              type="email"
+              placeholder="sk@cobrastore.com"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, email: e.target.value }))
+              }
+            />
+          </label>
+          <label>
+            Password
+            <input
+              className="password"
+              type="password"
+              placeholder="********"
+              value={formData.password}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, password: e.target.value }))
+              }
+            />
+          </label>
           <div className="login-password-cta">
-            <input type="checkbox" id="login-remember-me" />
-            <label htmlFor="login-remember-me">
-              I accept all terms & conditions
+            <label>
+              <input type="checkbox" id="login-remember-me" required />I accept
+              all terms & conditions
             </label>
           </div>
           <input

@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Header, ThemeToggleButton } from "./components";
 import {
   Cart,
@@ -25,6 +27,7 @@ function App() {
         <Route path="/mock" element={<Mock />} />
       </Routes>
 
+      <ToastContainer />
       <ThemeToggleButton />
     </>
   );
