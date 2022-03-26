@@ -1,21 +1,18 @@
 import { ProductCard, ProductFilter } from "../components";
 import { useProducts } from "../contexts";
-import { useProductReducer } from "../reducers/product-reducer";
 import { useDocumentTitle } from "../utils";
 import "./pages-css/products.css";
 
 export const Products = () => {
   useDocumentTitle("Products");
-
-  const { loading } = useProducts();
-  const { state, dispatch, productsToShow } = useProductReducer();
+  const { loadingProducts, productsToShow } = useProducts();
 
   return (
     <div className="products-body">
-      <ProductFilter state={state} dispatch={dispatch} />
+      <ProductFilter />
 
       <main className="products-main">
-        {loading ? (
+        {loadingProducts ? (
           <div className="loading-screen">Loading Products...</div>
         ) : (
           productsToShow.map((product) => (

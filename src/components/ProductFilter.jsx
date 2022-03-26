@@ -1,12 +1,13 @@
-import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
 import { useProducts } from "../contexts";
 import "./component-css/productFilter.css";
 
-export const ProductFilter = (props) => {
-  const { categoriesFromDB } = useProducts();
+export const ProductFilter = () => {
+  const {
+    categoriesFromDB,
+    productReducerState: state,
+    productReducerDispatch: dispatch,
+  } = useProducts();
 
-  const { state, dispatch } = props;
   const {
     filterTillPriceRange,
     sortByPrice,
@@ -14,18 +15,21 @@ export const ProductFilter = (props) => {
     filterByCategory,
   } = state;
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const categoryFromSearchParam = searchParams.get("category");
-  useEffect(
-    () =>
-      categoryFromSearchParam !== null &&
-      dispatch({
-        type: "FILTER_BY_CATEGORY_FROM_HOMEPAGE",
-        payload: categoryFromSearchParam,
-      }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [categoryFromSearchParam]
-  );
+  // //TODO:show every filter in the url search so that if that link is sent to someone so it will land on the product page with those filters applied
+  // currently only going from homepage categories to product page was using this
+  // //This code is for future use
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const categoryFromSearchParam = searchParams.get("category");
+  // useEffect(
+  //   () =>
+  //     categoryFromSearchParam !== null &&
+  //     dispatch({
+  //       type: "FILTER_BY_CATEGORY_FROM_HOMEPAGE",
+  //       payload: categoryFromSearchParam,
+  //     }),
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  //   [categoryFromSearchParam]
+  // );
 
   return (
     <aside className="products-filter-aside">
@@ -86,7 +90,8 @@ export const ProductFilter = (props) => {
               name="category"
               value={item}
               onChange={(e) => {
-                setSearchParams("");
+                //The below code is for future use
+                // setSearchParams("");
                 dispatch({
                   type: "FILTER_BY_CATEGORY",
                   payload: e.target.value,

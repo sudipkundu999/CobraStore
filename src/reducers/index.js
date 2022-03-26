@@ -1,1 +1,1 @@
-export { state, dispatch } from "./product-reducer";
+export { productReducerFunc } from "./product-reducer";

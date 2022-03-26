@@ -1,9 +1,11 @@
+import { useWishlist } from "../contexts";
 import "./component-css/productCard.css";
 export const ProductCard = ({ product }) => {
   const { name, author, price, image, inStock, badge, rating } = product;
 
-  //TODO: take care of this
-  const inWishlist = false;
+  const { wishlistReducerState, wishlistReducerDispatch } = useWishlist();
+  const inWishlist = wishlistReducerState.wishlistToShow.includes(product);
+
   return (
     <div className="card">
       {!inStock && <span className="card-text-overlay">Out of stock!</span>}
@@ -11,9 +13,25 @@ export const ProductCard = ({ product }) => {
       <div className="card-image-container">
         <button className="card-favourite">
           {inWishlist ? (
-            <i className="fas fa-heart fa-2x"></i>
+            <i
+              className="fas fa-heart fa-2x"
+              onClick={() => {
+                wishlistReducerDispatch({
+                  type: "REMOVE_FROM_WISHLIST",
+                  payload: product,
+                });
+              }}
+            ></i>
           ) : (
-            <i className="far fa-heart fa-2x"></i>
+            <i
+              className="far fa-heart fa-2x"
+              onClick={() => {
+                wishlistReducerDispatch({
+                  type: "ADD_TO_WISHLIST",
+                  payload: product,
+                });
+              }}
+            ></i>
           )}
         </button>
         <img src={image} alt={name} />
