@@ -90,6 +90,7 @@ export const ProductFilter = () => {
               name="category"
               value={item}
               onChange={(e) => {
+                //The below code is for future use
                 // setSearchParams("");
                 dispatch({
                   type: "FILTER_BY_CATEGORY",

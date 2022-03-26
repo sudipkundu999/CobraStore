@@ -60,8 +60,13 @@ export const Signup = () => {
           </label>
           <div className="login-password-cta">
             <label>
-              <input type="checkbox" id="login-remember-me" required />I accept
-              all terms & conditions
+              <input
+                type="checkbox"
+                id="login-remember-me"
+                required
+                defaultChecked
+              />
+              I accept all terms & conditions
             </label>
           </div>
           <input

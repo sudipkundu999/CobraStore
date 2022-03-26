@@ -27,7 +27,7 @@ export const removeFromWishlist = async (product) => {
         authorization: localStorage.getItem("cobraToken"),
       },
     });
-    response !== undefined && notifySuccess("Item deleted to wishlist");
+    response !== undefined && notifySuccess("Item deleted from wishlist");
   } catch (error) {
     notifyInfo("Please Login to sync wishlist");
   }
