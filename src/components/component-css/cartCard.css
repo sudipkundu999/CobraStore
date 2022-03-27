@@ -13,6 +13,17 @@
 .card-quantity {
   font-size: 1.5rem;
   margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card-quantity i {
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 5px;
+  background-color: var(--primary);
+  color: white;
 }
 
 .cart-main .card-cta {

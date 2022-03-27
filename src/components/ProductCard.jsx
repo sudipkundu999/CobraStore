@@ -1,4 +1,5 @@
-import { useWishlist } from "../contexts";
+import { useNavigate } from "react-router-dom";
+import { useCart, useWishlist } from "../contexts";
 import "./component-css/productCard.css";
 export const ProductCard = ({ product }) => {
   const { name, author, price, image, inStock, badge, rating } = product;
@@ -6,6 +7,10 @@ export const ProductCard = ({ product }) => {
   const { wishlistReducerState, wishlistReducerDispatch } = useWishlist();
   const inWishlist = wishlistReducerState.wishlistToShow.includes(product);
 
+  const { cartToShow, cartReducerDispatch } = useCart();
+  const inCart = cartToShow.findIndex((ele) => ele._id === product._id);
+
+  const navigate = useNavigate();
   return (
     <div className="card">
       {!inStock && <span className="card-text-overlay">Out of stock!</span>}
@@ -52,8 +57,38 @@ export const ProductCard = ({ product }) => {
         </span>
       </div>
       <div className="card-cta">
-        <button className="btn btn-secondary">Add to cart</button>
-        <button className="btn btn-primary">Buy Now</button>
+        {inCart === -1 ? (
+          <button
+            className="btn btn-secondary"
+            onClick={() => {
+              cartReducerDispatch({ type: "ADD_TO_CART", payload: product });
+            }}
+          >
+            Add to cart
+          </button>
+        ) : (
+          <button className="btn btn-outline">Item in Cart</button>
+        )}
+        {inCart === -1 ? (
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              cartReducerDispatch({ type: "ADD_TO_CART", payload: product });
+              navigate("/cart");
+            }}
+          >
+            Buy Now
+          </button>
+        ) : (
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              navigate("/cart");
+            }}
+          >
+            Buy Now
+          </button>
+        )}
       </div>
     </div>
   );

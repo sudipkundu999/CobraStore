@@ -1,6 +1,6 @@
 .cart-price-details {
   width: 35rem;
-  height: 25rem;
+  height: 26rem;
   background-color: var(--white);
   padding: 2rem;
   border-radius: 5px;
@@ -26,4 +26,9 @@
   background-color: var(--yellow-bright);
   color: var(--black);
   border-radius: 0;
+}
+
+.free-delivery {
+  font-size: 1.25rem;
+  text-align: center;
 }

@@ -13,3 +13,12 @@
 .card {
   height: 39rem;
 }
+
+.products-main .btn-outline,
+.wishlist-main .btn-outline {
+  color: var(--secondary);
+  background-color: transparent;
+  padding: 9px 7.5px;
+  border: 1px solid var(--secondary);
+  cursor: not-allowed;
+}

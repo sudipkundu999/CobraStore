@@ -52,7 +52,7 @@ const WishlistProvider = ({ children }) => {
         removeFromWishlist(action.payload);
         return {
           wishlistToShow: state.wishlistToShow.filter(
-            (x) => x !== action.payload
+            (x) => x._id !== action.payload._id
           ),
         };
       }
