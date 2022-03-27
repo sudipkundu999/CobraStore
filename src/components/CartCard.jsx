@@ -32,11 +32,13 @@ export const CartCard = ({ product }) => {
           <i
             className="fas fa-minus"
             onClick={() => {
-              cartReducerDispatch({
-                type: "INCREASE_OR_DECREASE_COUNT_FROM_CART",
-                payload: { product: product, type: "decrement" },
-              });
+              qty !== 1 &&
+                cartReducerDispatch({
+                  type: "INCREASE_OR_DECREASE_COUNT_FROM_CART",
+                  payload: { product: product, type: "decrement" },
+                });
             }}
+            style={{ cursor: qty === 1 ? "not-allowed" : "pointer" }}
           ></i>
           Quantity : {qty}
           <i
