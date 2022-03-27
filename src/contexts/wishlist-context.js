@@ -41,15 +41,16 @@ const WishlistProvider = ({ children }) => {
   );
 
   //Update wishlist
+  const { operation: operationReducerWishlist } = useAxios();
   const initialStateOfWishlist = { wishlistToShow: wishlistFromDB };
   const [state, dispatch] = useReducer((state, action) => {
     switch (action.type) {
       case "ADD_TO_WISHLIST": {
-        addToWishlist(action.payload);
+        addToWishlist(operationReducerWishlist, action.payload);
         return { wishlistToShow: [...state.wishlistToShow, action.payload] };
       }
       case "REMOVE_FROM_WISHLIST": {
-        removeFromWishlist(action.payload);
+        removeFromWishlist(operationReducerWishlist, action.payload);
         return {
           wishlistToShow: state.wishlistToShow.filter(
             (x) => x._id !== action.payload._id
