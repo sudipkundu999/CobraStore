@@ -63,6 +63,8 @@ export const CartPriceDetails = () => {
           notifySuccess("ORDER PLACED!");
           navigate("/products");
         }}
+        disabled={cartToShow.length === 0 ? true : false}
+        style={{ cursor: cartToShow.length === 0 ? "not-allowed" : "pointer" }}
       >
         PLACE ORDER
       </button>
