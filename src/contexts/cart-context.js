@@ -46,7 +46,7 @@ const CartProvider = ({ children }) => {
   //Update cart
   const { operation: cartReducerOperation } = useAxios();
   const initialStateOfCart = { cartToShow: cartFromDB };
-  const [state, dispatch] = useReducer((state, action) => {
+  const cartReducerFunc = (state, action) => {
     switch (action.type) {
       case "ADD_TO_CART": {
         addToCart(cartReducerOperation, action.payload);
@@ -86,8 +86,8 @@ const CartProvider = ({ children }) => {
       default:
         return { cartToShow: [] };
     }
-  }, initialStateOfCart);
-
+  };
+  const [state, dispatch] = useReducer(cartReducerFunc, initialStateOfCart);
   return (
     <CartContext.Provider
       value={{
