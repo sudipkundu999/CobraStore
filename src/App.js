@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Header, ThemeToggleButton } from "./components";
+import { useTheme } from "./contexts";
 import {
   Cart,
   Homepage,
@@ -13,8 +14,9 @@ import {
 } from "./pages";
 
 function App() {
+  const { theme } = useTheme();
   return (
-    <>
+    <div className={theme === "dark" && "dark-mode-class"}>
       <Header />
 
       <Routes>
@@ -29,7 +31,7 @@ function App() {
 
       <ToastContainer />
       <ThemeToggleButton />
-    </>
+    </div>
   );
 }
 

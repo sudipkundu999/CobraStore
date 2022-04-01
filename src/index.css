@@ -8,3 +8,19 @@ body {
 .Toastify__toast-body {
   font-size: 1.5rem;
 }
+
+.dark-mode-class {
+  background: #162538;
+}
+
+.dark-mode-class .heading {
+  color: var(--white);
+}
+
+.dark-mode-class aside {
+  color: var(--white);
+}
+
+.dark-mode-class .card {
+  background: var(--white);
+}
