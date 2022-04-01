@@ -4,8 +4,8 @@ import "./component-css/productCard.css";
 export const ProductCard = ({ product }) => {
   const { name, author, price, image, inStock, badge, rating } = product;
 
-  const { wishlistReducerState, wishlistReducerDispatch } = useWishlist();
-  const inWishlist = wishlistReducerState.wishlistToShow.includes(product);
+  const { wishlistToShow, addToWishlist, removeFromWishlist } = useWishlist();
+  const inWishlist = wishlistToShow.findIndex((ele) => ele._id === product._id);
 
   const { cartToShow, cartReducerDispatch } = useCart();
   const inCart = cartToShow.findIndex((ele) => ele._id === product._id);
@@ -17,24 +17,18 @@ export const ProductCard = ({ product }) => {
       {badge && <span className="card-badge">{badge}</span>}
       <div className="card-image-container">
         <button className="card-favourite">
-          {inWishlist ? (
+          {inWishlist !== -1 ? (
             <i
               className="fas fa-heart fa-2x"
               onClick={() => {
-                wishlistReducerDispatch({
-                  type: "REMOVE_FROM_WISHLIST",
-                  payload: product,
-                });
+                removeFromWishlist(product);
               }}
             ></i>
           ) : (
             <i
               className="far fa-heart fa-2x"
               onClick={() => {
-                wishlistReducerDispatch({
-                  type: "ADD_TO_WISHLIST",
-                  payload: product,
-                });
+                addToWishlist(product);
               }}
             ></i>
           )}

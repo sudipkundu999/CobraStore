@@ -14,8 +14,6 @@ export {
   sortByPriceFunc,
 } from "./productFilterUtils";
 
-export { addToWishlist, removeFromWishlist } from "./wishlistUtils";
-
 export {
   addToCart,
   removeFromCart,
