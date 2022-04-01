@@ -30,7 +30,7 @@ header {
   padding: 3rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .loading-screen {
@@ -55,5 +55,27 @@ header {
 
   .products-filter-aside {
     display: none;
+  }
+}
+
+@media screen and (min-width: 1350px) {
+  .products-body {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas:
+      "header header header header header header"
+      "sidebar main main main main main"
+      "sidebar main main main main main"
+      "sidebar main main main main main";
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .products-body {
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-areas:
+      "header header header header header header header"
+      "sidebar main main main main main main"
+      "sidebar main main main main main main"
+      "sidebar main main main main main main";
   }
 }
