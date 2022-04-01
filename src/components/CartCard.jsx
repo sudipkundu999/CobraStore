@@ -4,11 +4,9 @@ import "./component-css/cartCard.css";
 export const CartCard = ({ product }) => {
   const { id, name, author, price, image, badge, qty } = product;
 
-  const { wishlistReducerState, wishlistReducerDispatch } = useWishlist();
   //Caution : The product coming from props has an additional qty with it.
-  const inWishlist = wishlistReducerState.wishlistToShow.findIndex(
-    (ele) => ele._id === product._id
-  );
+  const { wishlistToShow, addToWishlist, removeFromWishlist } = useWishlist();
+  const inWishlist = wishlistToShow.findIndex((ele) => ele._id === product._id);
 
   const { cartReducerDispatch } = useCart();
   return (
@@ -67,10 +65,7 @@ export const CartCard = ({ product }) => {
             <button
               className="btn btn-outline"
               onClick={() => {
-                wishlistReducerDispatch({
-                  type: "REMOVE_FROM_WISHLIST",
-                  payload: product,
-                });
+                removeFromWishlist(product);
               }}
             >
               Remove from Wishlist
@@ -79,10 +74,7 @@ export const CartCard = ({ product }) => {
             <button
               className="btn btn-primary"
               onClick={() => {
-                wishlistReducerDispatch({
-                  type: "ADD_TO_WISHLIST",
-                  payload: product,
-                });
+                addToWishlist(product);
               }}
             >
               Move to wishlist
