@@ -16,7 +16,7 @@ import {
 function App() {
   const { theme } = useTheme();
   return (
-    <div className={theme === "dark" && "dark-mode-class"}>
+    <div className={theme === "dark" ? "dark-mode-class" : ""}>
       <Header />
 
       <Routes>
