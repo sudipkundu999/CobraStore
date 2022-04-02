@@ -4,13 +4,13 @@ import "./component-css/cartCard.css";
 export const CartCard = ({ product }) => {
   const { id, name, author, price, image, badge, qty } = product;
 
-  const { wishlistReducerState, wishlistReducerDispatch } = useWishlist();
-  //Caution : The product coming from props has an additional qty with it.
-  const inWishlist = wishlistReducerState.wishlistToShow.findIndex(
+  const { wishlistToShow, addToWishlist, removeFromWishlist } = useWishlist();
+  const isProductInWishlist = wishlistToShow.findIndex(
     (ele) => ele._id === product._id
   );
 
-  const { cartReducerDispatch } = useCart();
+  const { removeFromCart, updateCountCart } = useCart();
+
   return (
     <div className="card card-horizontal" key={id}>
       {badge && <span className="card-badge">{badge}</span>}
@@ -32,11 +32,7 @@ export const CartCard = ({ product }) => {
           <i
             className="fas fa-minus"
             onClick={() => {
-              qty !== 1 &&
-                cartReducerDispatch({
-                  type: "INCREASE_OR_DECREASE_COUNT_FROM_CART",
-                  payload: { product: product, type: "decrement" },
-                });
+              qty !== 1 && updateCountCart(product, "decrement");
             }}
             style={{ cursor: qty === 1 ? "not-allowed" : "pointer" }}
           ></i>
@@ -44,10 +40,7 @@ export const CartCard = ({ product }) => {
           <i
             className="fas fa-plus"
             onClick={() => {
-              cartReducerDispatch({
-                type: "INCREASE_OR_DECREASE_COUNT_FROM_CART",
-                payload: { product: product, type: "increment" },
-              });
+              updateCountCart(product, "increment");
             }}
           ></i>
         </div>
@@ -55,22 +48,16 @@ export const CartCard = ({ product }) => {
           <button
             className="btn btn-outline"
             onClick={() => {
-              cartReducerDispatch({
-                type: "REMOVE_FROM_CART",
-                payload: product,
-              });
+              removeFromCart(product);
             }}
           >
             Remove from cart
           </button>
-          {inWishlist !== -1 ? (
+          {isProductInWishlist !== -1 ? (
             <button
               className="btn btn-outline"
               onClick={() => {
-                wishlistReducerDispatch({
-                  type: "REMOVE_FROM_WISHLIST",
-                  payload: product,
-                });
+                removeFromWishlist(product);
               }}
             >
               Remove from Wishlist
@@ -79,10 +66,7 @@ export const CartCard = ({ product }) => {
             <button
               className="btn btn-primary"
               onClick={() => {
-                wishlistReducerDispatch({
-                  type: "ADD_TO_WISHLIST",
-                  payload: product,
-                });
+                addToWishlist(product);
               }}
             >
               Move to wishlist

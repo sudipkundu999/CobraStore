@@ -21,6 +21,7 @@ export const Signup = () => {
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, firstName: e.target.value }))
               }
+              required
             />
           </label>
           <label>
@@ -32,6 +33,7 @@ export const Signup = () => {
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, lastName: e.target.value }))
               }
+              required
             />
           </label>
           <label>
@@ -44,6 +46,7 @@ export const Signup = () => {
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, email: e.target.value }))
               }
+              required
             />
           </label>
           <label>
@@ -56,6 +59,7 @@ export const Signup = () => {
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, password: e.target.value }))
               }
+              required
             />
           </label>
           <div className="login-password-cta">

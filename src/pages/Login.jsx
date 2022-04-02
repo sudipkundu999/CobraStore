@@ -7,11 +7,11 @@ export const Login = () => {
   useDocumentTitle("Login");
   const { formData, setFormData, onSubmitLogin } = useAuth();
 
-  const loginAsAdmin = () => {
+  const loginAsGuest = () => {
     setFormData((prev) => ({
       ...prev,
-      email: "sudipkundu@cobrastore.com",
-      password: "sudipkundu",
+      email: "guest@cobrastore.com",
+      password: "cobrastore",
     }));
   };
 
@@ -31,6 +31,7 @@ export const Login = () => {
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, email: e.target.value }))
               }
+              required
             />
           </label>
           <label>
@@ -44,6 +45,7 @@ export const Login = () => {
               onChange={(e) =>
                 setFormData((prev) => ({ ...prev, password: e.target.value }))
               }
+              required
             />
           </label>
           <div className="login-password-cta">
@@ -53,9 +55,9 @@ export const Login = () => {
             </label>
             <div
               className="btn btn-link admin-login"
-              onClick={() => loginAsAdmin()}
+              onClick={() => loginAsGuest()}
             >
-              Login as Admin
+              Login as Guest
             </div>
           </div>
           <input

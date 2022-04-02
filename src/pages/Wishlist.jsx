@@ -5,13 +5,13 @@ import { useWishlist } from "../contexts";
 
 export const Wishlist = () => {
   useDocumentTitle("Wishlist");
-  const { wishlistReducerState } = useWishlist();
+  const { wishlistToShow } = useWishlist();
 
   return (
     <main className="wishlist-main">
       <div className="heading">Wishlist</div>
       <div className="cards-wrapper">
-        {wishlistReducerState.wishlistToShow.map((product) => (
+        {wishlistToShow.map((product) => (
           <ProductCard product={product} key={product.id} />
         ))}
       </div>

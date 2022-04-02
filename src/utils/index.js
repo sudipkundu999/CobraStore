@@ -13,11 +13,3 @@ export {
   initialStateOfProductsFilter,
   sortByPriceFunc,
 } from "./productFilterUtils";
-
-export { addToWishlist, removeFromWishlist } from "./wishlistUtils";
-
-export {
-  addToCart,
-  removeFromCart,
-  increaseOrDecreaseCountFromCart,
-} from "./cartUtils";

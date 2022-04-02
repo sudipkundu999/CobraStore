@@ -1,8 +1,8 @@
-.home-main {
+.page404-main {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   margin: auto;
   min-height: calc(100vh - 6rem);
 }

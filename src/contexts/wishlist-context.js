@@ -1,27 +1,21 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
-import { addToWishlist, removeFromWishlist, useAxios } from "../utils";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useAxios } from "../utils";
+import { useAuth } from "./auth-context";
 
 const WishlistContext = createContext();
 
 const useWishlist = () => useContext(WishlistContext);
 
 const WishlistProvider = ({ children }) => {
-  //Initial Fetching of Wishlist from DB
-  const [wishlistFromDB, setWishlistFromDB] = useState([]);
+  const [wishlistToShow, setWishlistToShow] = useState([]);
   const {
     response: responseWishlist,
     loading: loadingWishlist,
-    operation: fetchWishlist,
+    operation: operationWishlist,
   } = useAxios();
 
-  useEffect(() => {
-    fetchWishlist({
+  const fetchWishlist = () => {
+    operationWishlist({
       method: "get",
       url: "/api/user/wishlist",
       headers: {
@@ -30,45 +24,52 @@ const WishlistProvider = ({ children }) => {
       },
       data: {},
     });
+  };
+
+  const { isUserLoggedIn } = useAuth();
+  useEffect(() => {
+    isUserLoggedIn ? fetchWishlist() : setWishlistToShow([]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isUserLoggedIn]);
+
+  const addToWishlist = (product) => {
+    operationWishlist({
+      method: "POST",
+      url: "/api/user/wishlist",
+      headers: {
+        accept: "*/*",
+        authorization: localStorage.getItem("cobraToken"),
+      },
+      data: { product: product },
+    });
+  };
+
+  const removeFromWishlist = (product) => {
+    operationWishlist({
+      method: "DELETE",
+      url: `/api/user/wishlist/${product._id}`,
+      headers: {
+        accept: "*/*",
+        authorization: localStorage.getItem("cobraToken"),
+      },
+      data: {},
+    });
+  };
 
   useEffect(
     () =>
       responseWishlist !== undefined &&
-      setWishlistFromDB(responseWishlist.wishList),
+      setWishlistToShow(responseWishlist.wishlist),
     [responseWishlist]
   );
-
-  //Update wishlist
-  const { operation: operationReducerWishlist } = useAxios();
-  const initialStateOfWishlist = { wishlistToShow: wishlistFromDB };
-  const [state, dispatch] = useReducer((state, action) => {
-    switch (action.type) {
-      case "ADD_TO_WISHLIST": {
-        addToWishlist(operationReducerWishlist, action.payload);
-        return { wishlistToShow: [...state.wishlistToShow, action.payload] };
-      }
-      case "REMOVE_FROM_WISHLIST": {
-        removeFromWishlist(operationReducerWishlist, action.payload);
-        return {
-          wishlistToShow: state.wishlistToShow.filter(
-            (x) => x._id !== action.payload._id
-          ),
-        };
-      }
-      default:
-        return state;
-    }
-  }, initialStateOfWishlist);
 
   return (
     <WishlistContext.Provider
       value={{
-        wishlistFromDB,
         loadingWishlist,
-        wishlistReducerState: state,
-        wishlistReducerDispatch: dispatch,
+        wishlistToShow,
+        addToWishlist,
+        removeFromWishlist,
       }}
     >
       {children}
