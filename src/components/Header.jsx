@@ -4,7 +4,7 @@ import { useAuth } from "../contexts/auth-context";
 import "./component-css/header.css";
 
 export const Header = () => {
-  const { userName } = useAuth();
+  const { userName, isUserLoggedIn, logoutHandler } = useAuth();
 
   const { wishlistToShow } = useWishlist();
   const wishlistCount = wishlistToShow.length;
@@ -24,9 +24,11 @@ export const Header = () => {
           className="nav-search search-desktop"
         />
         <div className="nav-right">
-          <Link to="/mock">
-            <button className="btn btn-secondary">Mockman</button>
-          </Link>
+          {isUserLoggedIn && (
+            <button className="btn btn-secondary" onClick={logoutHandler}>
+              Logout
+            </button>
+          )}
           <Link className="nav-links" to="/login">
             <i className="fas fa-user fa-2x"></i>
             <span>{userName}</span>

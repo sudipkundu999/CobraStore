@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { notifyError, notifySuccess, useAxios } from "../utils";
+import { notifyError, notifyInfo, notifySuccess, useAxios } from "../utils";
 
 const AuthContext = createContext();
 
@@ -14,7 +14,8 @@ const AuthProvider = ({ children }) => {
     email: "",
     password: "",
   });
-  const [userName, setUserName] = useState("User");
+  const [userName, setUserName] = useState("Login");
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   //Login
   const {
@@ -36,6 +37,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (responseLogin !== undefined) {
       setUserName(responseLogin.foundUser.firstName);
+      setIsUserLoggedIn(true);
       notifySuccess("Login Successful");
       localStorage.setItem("cobraToken", responseLogin.encodedToken);
       setTimeout(() => {
@@ -73,8 +75,14 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (responseSignup !== undefined) {
-      setUserName(formData.firstName);
+      setUserName(
+        formData.firstName.charAt(0).toUpperCase() + formData.firstName.slice(1)
+      );
+      setIsUserLoggedIn(true);
       notifySuccess("Signup Successful");
+      notifyInfo(
+        "CobraStore currently runs on mock backend so signup details won't persist on page reload"
+      );
       localStorage.setItem("cobraToken", responseSignup.encodedToken);
       setTimeout(() => {
         navigate("/products");
@@ -106,9 +114,17 @@ const AuthProvider = ({ children }) => {
     responseVerifyUser !== undefined &&
       setTimeout(() => {
         setUserName(responseVerifyUser.user.firstName);
+        setIsUserLoggedIn(true);
         notifySuccess(`Welcome back ${responseVerifyUser.user.firstName}`);
       }, 1000);
   }, [responseVerifyUser]);
+
+  const logoutHandler = () => {
+    setUserName("Login");
+    setIsUserLoggedIn(false);
+    localStorage.removeItem("cobraToken");
+    notifySuccess("Logged out successfully");
+  };
 
   return (
     <AuthContext.Provider
@@ -118,6 +134,8 @@ const AuthProvider = ({ children }) => {
         onSubmitLogin,
         onSubmitSignup,
         userName,
+        isUserLoggedIn,
+        logoutHandler,
       }}
     >
       {children}
