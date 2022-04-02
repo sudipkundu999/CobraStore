@@ -7,11 +7,11 @@ export const Login = () => {
   useDocumentTitle("Login");
   const { formData, setFormData, onSubmitLogin } = useAuth();
 
-  const loginAsAdmin = () => {
+  const loginAsGuest = () => {
     setFormData((prev) => ({
       ...prev,
-      email: "sudipkundu@cobrastore.com",
-      password: "sudipkundu",
+      email: "guest@cobrastore.com",
+      password: "cobrastore",
     }));
   };
 
@@ -53,9 +53,9 @@ export const Login = () => {
             </label>
             <div
               className="btn btn-link admin-login"
-              onClick={() => loginAsAdmin()}
+              onClick={() => loginAsGuest()}
             >
-              Login as Admin
+              Login as Guest
             </div>
           </div>
           <input
