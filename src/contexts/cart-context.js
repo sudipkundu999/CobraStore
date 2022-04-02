@@ -84,9 +84,7 @@ const CartProvider = ({ children }) => {
   };
 
   useEffect(
-    () =>
-      responseCart !== undefined &&
-      (setCartToShow(responseCart.cart), console.log(responseCart.cart)),
+    () => responseCart !== undefined && setCartToShow(responseCart.cart),
     [responseCart]
   );
 

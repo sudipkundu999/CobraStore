@@ -59,8 +59,7 @@ const WishlistProvider = ({ children }) => {
   useEffect(
     () =>
       responseWishlist !== undefined &&
-      (setWishlistToShow(responseWishlist.wishlist),
-      console.log(responseWishlist.wishlist)),
+      setWishlistToShow(responseWishlist.wishlist),
     [responseWishlist]
   );
 
