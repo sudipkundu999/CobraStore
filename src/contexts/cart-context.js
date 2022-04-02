@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAxios } from "../utils";
+import { useAuth } from "./auth-context";
 
 const CartContext = createContext();
 
@@ -25,11 +26,11 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  //TODO:to be fetched after isLoggedIn changes to true
+  const { isUserLoggedIn } = useAuth();
   useEffect(() => {
-    fetchCart();
+    isUserLoggedIn ? fetchCart() : setCartToShow([]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isUserLoggedIn]);
 
   const addToCart = (product) => {
     operationCart({
@@ -83,7 +84,9 @@ const CartProvider = ({ children }) => {
   };
 
   useEffect(
-    () => responseCart !== undefined && setCartToShow(responseCart.cart),
+    () =>
+      responseCart !== undefined &&
+      (setCartToShow(responseCart.cart), console.log(responseCart.cart)),
     [responseCart]
   );
 

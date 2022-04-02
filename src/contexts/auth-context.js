@@ -8,12 +8,13 @@ const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    firstName: "xyz",
-    lastName: "abc",
+  const initialFromState = {
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
-  });
+  };
+  const [formData, setFormData] = useState(initialFromState);
   const [userName, setUserName] = useState("Login");
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
@@ -38,6 +39,7 @@ const AuthProvider = ({ children }) => {
     if (responseLogin !== undefined) {
       setUserName(responseLogin.foundUser.firstName);
       setIsUserLoggedIn(true);
+      setFormData(initialFromState);
       notifySuccess("Login Successful");
       localStorage.setItem("cobraToken", responseLogin.encodedToken);
       setTimeout(() => {
@@ -79,6 +81,7 @@ const AuthProvider = ({ children }) => {
         formData.firstName.charAt(0).toUpperCase() + formData.firstName.slice(1)
       );
       setIsUserLoggedIn(true);
+      setFormData(initialFromState);
       notifySuccess("Signup Successful");
       notifyInfo(
         "CobraStore currently runs on mock backend so signup details won't persist on page reload"
@@ -124,6 +127,7 @@ const AuthProvider = ({ children }) => {
     setIsUserLoggedIn(false);
     localStorage.removeItem("cobraToken");
     notifySuccess("Logged out successfully");
+    navigate("/");
   };
 
   return (

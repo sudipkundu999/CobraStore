@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { useCart, useWishlist } from "../contexts";
+import { useAuth, useCart, useWishlist } from "../contexts";
+import { notifyDefault } from "../utils";
 import "./component-css/productCard.css";
 export const ProductCard = ({ product }) => {
   const { name, author, price, image, inStock, badge, rating } = product;
@@ -14,7 +15,15 @@ export const ProductCard = ({ product }) => {
     (ele) => ele._id === product._id
   );
 
+  const { isUserLoggedIn } = useAuth();
+
   const navigate = useNavigate();
+
+  const notLoggedInHandler = () => {
+    navigate("/login");
+    notifyDefault("Please Login to continue");
+  };
+
   return (
     <div className="card">
       {!inStock && <span className="card-text-overlay">Out of stock!</span>}
@@ -32,7 +41,7 @@ export const ProductCard = ({ product }) => {
             <i
               className="far fa-heart fa-2x"
               onClick={() => {
-                addToWishlist(product);
+                isUserLoggedIn ? addToWishlist(product) : notLoggedInHandler();
               }}
             ></i>
           )}
@@ -61,7 +70,7 @@ export const ProductCard = ({ product }) => {
             style={{ cursor: !inStock ? "not-allowed" : "pointer" }}
             className="btn btn-secondary"
             onClick={() => {
-              addToCart(product);
+              isUserLoggedIn ? addToCart(product) : notLoggedInHandler();
             }}
           >
             Add to cart
@@ -75,8 +84,12 @@ export const ProductCard = ({ product }) => {
             style={{ cursor: !inStock ? "not-allowed" : "pointer" }}
             className="btn btn-primary"
             onClick={() => {
-              addToCart(product);
-              navigate("/cart");
+              isUserLoggedIn
+                ? (() => {
+                    addToCart(product);
+                    navigate("/cart");
+                  })()
+                : notLoggedInHandler();
             }}
           >
             Buy Now

@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./toastify.css";
-import { Header, ThemeToggleButton } from "./components";
+import { Header, PrivateRoute, ThemeToggleButton } from "./components";
 import { useTheme } from "./contexts";
 import {
   Cart,
@@ -25,8 +25,10 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/cart" element={<Cart />} />
+        </Route>
         <Route path="/products" element={<Products />} />
         <Route path="/mock" element={<Mock />} />
         <Route path="*" element={<Page404 />} />

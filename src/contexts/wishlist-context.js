@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAxios } from "../utils";
+import { useAuth } from "./auth-context";
 
 const WishlistContext = createContext();
 
@@ -25,11 +26,11 @@ const WishlistProvider = ({ children }) => {
     });
   };
 
-  //TODO:to be fetched after isLoggedIn changes to true
+  const { isUserLoggedIn } = useAuth();
   useEffect(() => {
-    fetchWishlist();
+    isUserLoggedIn ? fetchWishlist() : setWishlistToShow([]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isUserLoggedIn]);
 
   const addToWishlist = (product) => {
     operationWishlist({
@@ -58,7 +59,8 @@ const WishlistProvider = ({ children }) => {
   useEffect(
     () =>
       responseWishlist !== undefined &&
-      setWishlistToShow(responseWishlist.wishlist),
+      (setWishlistToShow(responseWishlist.wishlist),
+      console.log(responseWishlist.wishlist)),
     [responseWishlist]
   );
 
