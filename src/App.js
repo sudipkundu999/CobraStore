@@ -9,6 +9,7 @@ import {
   Homepage,
   Login,
   Mock,
+  Page404,
   Products,
   Signup,
   Wishlist,
@@ -28,6 +29,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/products" element={<Products />} />
         <Route path="/mock" element={<Mock />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
 
       <ToastContainer />
