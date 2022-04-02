@@ -15,6 +15,29 @@ header {
   display: none;
 }
 
+.header-badge {
+  position: absolute;
+  top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 2px;
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+  border-radius: 50%;
+  background-color: var(--secondary);
+}
+
+.wishlist-badge {
+  right: 65px;
+}
+
+.cart-badge {
+  right: 15px;
+}
+
 @media screen and (max-width: 680px) {
   header {
     height: 10.5rem;
