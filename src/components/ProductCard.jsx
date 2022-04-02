@@ -57,6 +57,8 @@ export const ProductCard = ({ product }) => {
       <div className="card-cta">
         {isProductInCart === -1 ? (
           <button
+            disabled={!inStock}
+            style={{ cursor: !inStock ? "not-allowed" : "pointer" }}
             className="btn btn-secondary"
             onClick={() => {
               addToCart(product);
@@ -69,6 +71,8 @@ export const ProductCard = ({ product }) => {
         )}
         {isProductInCart === -1 ? (
           <button
+            disabled={!inStock}
+            style={{ cursor: !inStock ? "not-allowed" : "pointer" }}
             className="btn btn-primary"
             onClick={() => {
               addToCart(product);

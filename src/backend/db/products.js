@@ -106,7 +106,7 @@ export const products = [
     category: "Educational",
     price: { current: 599, actual: 999 },
     image: getImg(8),
-    inStock: true,
+    inStock: false,
     badge: "",
     rating: 4.0,
   },
