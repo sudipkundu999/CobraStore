@@ -5,10 +5,14 @@ export const ProductCard = ({ product }) => {
   const { name, author, price, image, inStock, badge, rating } = product;
 
   const { wishlistToShow, addToWishlist, removeFromWishlist } = useWishlist();
-  const inWishlist = wishlistToShow.findIndex((ele) => ele._id === product._id);
+  const isProductInWishlist = wishlistToShow.findIndex(
+    (ele) => ele._id === product._id
+  );
 
-  const { cartToShow, cartReducerDispatch } = useCart();
-  const inCart = cartToShow.findIndex((ele) => ele._id === product._id);
+  const { cartToShow, addToCart } = useCart();
+  const isProductInCart = cartToShow.findIndex(
+    (ele) => ele._id === product._id
+  );
 
   const navigate = useNavigate();
   return (
@@ -17,7 +21,7 @@ export const ProductCard = ({ product }) => {
       {badge && <span className="card-badge">{badge}</span>}
       <div className="card-image-container">
         <button className="card-favourite">
-          {inWishlist !== -1 ? (
+          {isProductInWishlist !== -1 ? (
             <i
               className="fas fa-heart fa-2x"
               onClick={() => {
@@ -51,11 +55,11 @@ export const ProductCard = ({ product }) => {
         </span>
       </div>
       <div className="card-cta">
-        {inCart === -1 ? (
+        {isProductInCart === -1 ? (
           <button
             className="btn btn-secondary"
             onClick={() => {
-              cartReducerDispatch({ type: "ADD_TO_CART", payload: product });
+              addToCart(product);
             }}
           >
             Add to cart
@@ -63,11 +67,11 @@ export const ProductCard = ({ product }) => {
         ) : (
           <button className="btn btn-outline">Item in Cart</button>
         )}
-        {inCart === -1 ? (
+        {isProductInCart === -1 ? (
           <button
             className="btn btn-primary"
             onClick={() => {
-              cartReducerDispatch({ type: "ADD_TO_CART", payload: product });
+              addToCart(product);
               navigate("/cart");
             }}
           >

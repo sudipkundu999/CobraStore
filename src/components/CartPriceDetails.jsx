@@ -5,7 +5,7 @@ import "./component-css/cartPriceDetails.css";
 
 export const CartPriceDetails = () => {
   const navigate = useNavigate();
-  const { cartToShow, cartReducerDispatch } = useCart();
+  const { cartToShow, placeOrder } = useCart();
   const priceDetails = cartToShow.reduce(
     (acc, curr) => ({
       ...acc,
@@ -59,7 +59,8 @@ export const CartPriceDetails = () => {
       <button
         className="btn"
         onClick={() => {
-          cartReducerDispatch({ type: "RESET" });
+          // cartReducerDispatch({ type: "RESET" });
+          placeOrder();
           notifySuccess("ORDER PLACED!");
           navigate("/products");
         }}

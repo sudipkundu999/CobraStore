@@ -13,9 +13,3 @@ export {
   initialStateOfProductsFilter,
   sortByPriceFunc,
 } from "./productFilterUtils";
-
-export {
-  addToCart,
-  removeFromCart,
-  increaseOrDecreaseCountFromCart,
-} from "./cartUtils";

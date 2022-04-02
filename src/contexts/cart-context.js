@@ -1,32 +1,20 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
-import {
-  addToCart,
-  increaseOrDecreaseCountFromCart,
-  removeFromCart,
-  useAxios,
-} from "../utils";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useAxios } from "../utils";
 
 const CartContext = createContext();
 
 const useCart = () => useContext(CartContext);
 
 const CartProvider = ({ children }) => {
-  //Initial Fetching of Cart from DB
-  const [cartFromDB, setCartFromDB] = useState([]);
+  const [cartToShow, setCartToShow] = useState([]);
   const {
     response: responseCart,
     loading: loadingCart,
-    operation: fetchCart,
+    operation: operationCart,
   } = useAxios();
 
-  useEffect(() => {
-    fetchCart({
+  const fetchCart = () => {
+    operationCart({
       method: "get",
       url: "/api/user/cart",
       headers: {
@@ -35,67 +23,79 @@ const CartProvider = ({ children }) => {
       },
       data: {},
     });
+  };
+
+  //TODO:to be fetched after isLoggedIn changes to true
+  useEffect(() => {
+    fetchCart();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const addToCart = (product) => {
+    operationCart({
+      method: "POST",
+      url: "/api/user/cart",
+      headers: {
+        accept: "*/*",
+        authorization: localStorage.getItem("cobraToken"),
+      },
+      data: { product: product },
+    });
+  };
+
+  const removeFromCart = (product) => {
+    operationCart({
+      method: "DELETE",
+      url: `/api/user/cart/${product._id}`,
+      headers: {
+        accept: "*/*",
+        authorization: localStorage.getItem("cobraToken"),
+      },
+      data: {},
+    });
+  };
+
+  const updateCountCart = (product, type) => {
+    operationCart({
+      method: "POST",
+      url: `/api/user/cart/${product._id}`,
+      headers: {
+        accept: "*/*",
+        authorization: localStorage.getItem("cobraToken"),
+      },
+      data: { action: { type: type } },
+    });
+  };
+
+  //This is a function that mocks the behaviour of clearing the cart on placing an order
+  const placeOrder = () => {
+    cartToShow.map((product) =>
+      operationCart({
+        method: "DELETE",
+        url: `/api/user/cart/${product._id}`,
+        headers: {
+          accept: "*/*",
+          authorization: localStorage.getItem("cobraToken"),
+        },
+        data: {},
+      })
+    );
+  };
+
   useEffect(
-    () => responseCart !== undefined && setCartFromDB(responseCart.cart),
+    () => responseCart !== undefined && setCartToShow(responseCart.cart),
     [responseCart]
   );
 
-  //Update cart
-  const { operation: cartReducerOperation } = useAxios();
-  const initialStateOfCart = { cartToShow: cartFromDB };
-  const cartReducerFunc = (state, action) => {
-    switch (action.type) {
-      case "ADD_TO_CART": {
-        addToCart(cartReducerOperation, action.payload);
-        return {
-          cartToShow: [...state.cartToShow, { ...action.payload, qty: 1 }],
-        };
-      }
-      case "REMOVE_FROM_CART": {
-        removeFromCart(cartReducerOperation, action.payload._id);
-        return {
-          cartToShow: state.cartToShow.filter((x) => x !== action.payload),
-        };
-      }
-      case "INCREASE_OR_DECREASE_COUNT_FROM_CART": {
-        increaseOrDecreaseCountFromCart(
-          cartReducerOperation,
-          action.payload.product._id,
-          action.payload.type
-        );
-        if (action.payload.type === "increment") {
-          return {
-            cartToShow: state.cartToShow.map((x) =>
-              x._id === action.payload.product._id
-                ? { ...x, qty: x.qty + 1 }
-                : { ...x }
-            ),
-          };
-        } else
-          return {
-            cartToShow: state.cartToShow.map((x) =>
-              x._id === action.payload.product._id
-                ? { ...x, qty: x.qty - 1 }
-                : { ...x }
-            ),
-          };
-      }
-      default:
-        return { cartToShow: [] };
-    }
-  };
-  const [state, dispatch] = useReducer(cartReducerFunc, initialStateOfCart);
   return (
     <CartContext.Provider
       value={{
-        cartFromDB,
         loadingCart,
-        cartReducerState: state,
-        cartReducerDispatch: dispatch,
-        cartToShow: state.cartToShow,
+        cartToShow,
+        addToCart,
+        removeFromCart,
+        updateCountCart,
+        placeOrder,
       }}
     >
       {children}
