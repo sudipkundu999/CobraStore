@@ -58,7 +58,7 @@ const AuthProvider = ({ children }) => {
         firstName: responseLogin.foundUser.firstName,
         lastName: responseLogin.foundUser.lastName,
         email: responseLogin.foundUser.email,
-        password: formData.password,
+        password: formData.password || "cobrastore",
       });
       setFormData(initialFromState);
       notifySuccess("Login Successful");
