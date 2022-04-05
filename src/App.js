@@ -5,7 +5,7 @@ import "./toastify.css";
 import {
   Header,
   PrivateRoute,
-  RestrictedRoutes,
+  AuthRoutes,
   ThemeToggleButton,
 } from "./components";
 import { useTheme } from "./contexts";
@@ -17,6 +17,7 @@ import {
   Page404,
   Products,
   Signup,
+  User,
   Wishlist,
 } from "./pages";
 
@@ -28,11 +29,12 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route element={<RestrictedRoutes />}>
+        <Route element={<AuthRoutes />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Route>
         <Route element={<PrivateRoute />}>
+          <Route path="/user" element={<User />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/cart" element={<Cart />} />
         </Route>

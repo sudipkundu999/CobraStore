@@ -17,6 +17,12 @@ const AuthProvider = ({ children }) => {
   const [formData, setFormData] = useState(initialFromState);
   const [userName, setUserName] = useState("Login");
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
 
   //Login
   const {
@@ -35,10 +41,25 @@ const AuthProvider = ({ children }) => {
     });
   };
 
+  const loginAsGuest = () => {
+    operationLogin({
+      method: "post",
+      url: "/api/auth/login",
+      headers: { accept: "*/*" },
+      data: { email: "guest@cobrastore.com", password: "cobrastore" },
+    });
+  };
+
   useEffect(() => {
     if (responseLogin !== undefined) {
       setUserName(responseLogin.foundUser.firstName);
       setIsUserLoggedIn(true);
+      setUserData({
+        firstName: responseLogin.foundUser.firstName,
+        lastName: responseLogin.foundUser.lastName,
+        email: responseLogin.foundUser.email,
+        password: formData.password,
+      });
       setFormData(initialFromState);
       notifySuccess("Login Successful");
       localStorage.setItem("cobraToken", responseLogin.encodedToken);
@@ -81,6 +102,12 @@ const AuthProvider = ({ children }) => {
         formData.firstName.charAt(0).toUpperCase() + formData.firstName.slice(1)
       );
       setIsUserLoggedIn(true);
+      setUserData({
+        firstName: responseSignup.createdUser.firstName,
+        lastName: responseSignup.createdUser.lastName,
+        email: responseSignup.createdUser.email,
+        password: responseSignup.createdUser.password,
+      });
       setFormData(initialFromState);
       notifySuccess("Signup Successful");
       notifyInfo(
@@ -118,6 +145,12 @@ const AuthProvider = ({ children }) => {
       setTimeout(() => {
         setUserName(responseVerifyUser.user.firstName);
         setIsUserLoggedIn(true);
+        setUserData({
+          firstName: responseVerifyUser.user.firstName,
+          lastName: responseVerifyUser.user.lastName,
+          email: responseVerifyUser.user.email,
+          password: responseVerifyUser.user.password,
+        });
         notifySuccess(`Welcome back ${responseVerifyUser.user.firstName}`);
       }, 1000);
   }, [responseVerifyUser]);
@@ -125,6 +158,12 @@ const AuthProvider = ({ children }) => {
   const logoutHandler = () => {
     setUserName("Login");
     setIsUserLoggedIn(false);
+    setUserData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+    });
     localStorage.removeItem("cobraToken");
     notifySuccess("Logged out successfully");
     navigate("/");
@@ -140,6 +179,8 @@ const AuthProvider = ({ children }) => {
         userName,
         isUserLoggedIn,
         logoutHandler,
+        userData,
+        loginAsGuest,
       }}
     >
       {children}

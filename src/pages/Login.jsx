@@ -5,15 +5,7 @@ import "./pages-css/login.css";
 
 export const Login = () => {
   useDocumentTitle("Login");
-  const { formData, setFormData, onSubmitLogin } = useAuth();
-
-  const loginAsGuest = () => {
-    setFormData((prev) => ({
-      ...prev,
-      email: "guest@cobrastore.com",
-      password: "cobrastore",
-    }));
-  };
+  const { formData, setFormData, onSubmitLogin, loginAsGuest } = useAuth();
 
   return (
     <main className="login-signup-main">
