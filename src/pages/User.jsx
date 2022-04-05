@@ -9,7 +9,7 @@ export const User = () => {
 
   return (
     <main className="user-main">
-      <h1>User Profile</h1>
+      <div className="heading">User Profile</div>
       <div className="profile-details-wrapper">
         <h2 className="profile-heading">Profile Details</h2>
         <div className="avatar avatar-l">
