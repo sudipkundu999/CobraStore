@@ -29,7 +29,7 @@ export const User = () => {
             <li>
               {togglePass
                 ? userData.password
-                : [...userData.password].map(() => "*")}
+                : userData.password.split("").map(() => "*")}
               <div className="eye-btn">
                 {togglePass ? (
                   <i className="fas fa-eye-slash" onClick={togglePassView} />
