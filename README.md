@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+#### Status : 🏗️Under construction 🚧
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
 
-## Available Scripts
+# Cobra Store
 
-In the project directory, you can run:
+### CobraStore is an e-commerce platform for book lovers. You can buy various books in your favourite category.
 
-### `npm start`
+![CobraStore gif](./cobrastore.gif)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# [Live Website](https://cobra-store-react.netlify.app)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+</div>
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📕 Table of Contents
 
-### `npm run build`
+- [Features](#🚀-features)
+- [Features you might see in the future](#✨-features-you-might-see-in-the-future)
+- [Instructions to run the app locally](#🔌-instructions-to-run-the-app-locally)
+- [Readme](#⚠️-caution)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+From **Navbar**
 
-### `npm run eject`
+- Navigate to the Wishlist,Cart,Login and User profile page.
+- Clicking on CobraStore navigates back to homepage
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+From **Home** page
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Clicking on **Buy Now** takes the user to the products page
+- Clicking on categories will take the user to the product page and show only products from that category.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+From **Products** page
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- filter the products based on your preference:
 
-## Learn More
+  - sort by Price
+  - filter by Category
+  - slider to filter by Price Range
+  - sort by Ratings
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- add/remove items to your Wishlist
+- add items to your Cart by clicking on **Add to Cart**. Clicking on **Buy Now** adds the product to cart and takes the user to cart
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+From **WishList** page
 
-### Code Splitting
+- remove Items from your WishList
+- add items to your Cart
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+From **Cart** page
 
-### Analyzing the Bundle Size
+- see the price card, containing total amount that you have to pay.
+- increase/decrease the quantity of an item
+- add/remove items to your WishList
+- remove items from your Cart
+- clicking on **Place Order** mimics the actual functionality of placing an order.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## ✨ Features you might see in the future
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Search for product functionality in **Navbar**
+- Address Management
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🔌 Instructions to run the app locally
 
-### Deployment
+- clone the repository on your local machine with the command below in your terminal, and cd into the folder
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+git clone https://github.com/sudipkundu999/CobraStore-React.git
 
-### `npm run build` fails to minify
+cd CobraStore-React
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- install dependencies
+
+```
+npm install
+```
+
+- create a `.env` file in root directory and create a variable like mentioned below
+
+```
+REACT_APP_JWT_SECRET = <JWT_SECRET_KEY_OF_YOUR_CHOICE>
+```
+
+- start the server
+
+```
+npm start
+```
+
+---
+
+## ⚠️ Caution
+
+CobraStore currently runs on a mock backend, [MockBee](https://mockbee.netlify.app/). So, everytime the page reloads a new instance of the server starts. What this means is, data won't persist on reloading the page. However, all other functionality works flawlessly like a real backend.
+
+You can test this, by logging in or signing up then adding a few items to your cart and wishlist then logging out and again repeating the process using different credentials. Now, when you'll login using the 1st credentials you'll notice that the cart and wishlist shows the data as expected. Repeat the same for 2nd credentials and you'll see it is true for this case also. However, remember to not reload at any point during the process as that will start a new instance of the server.
+
+---
+
+Learning and growing with [@neogcamp](https://github.com/neogcamp)

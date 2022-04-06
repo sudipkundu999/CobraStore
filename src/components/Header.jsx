@@ -29,7 +29,7 @@ export const Header = () => {
               Logout
             </button>
           )}
-          <Link className="nav-links" to="/login">
+          <Link className="nav-links" to={isUserLoggedIn ? `/user` : `/login`}>
             <i className="fas fa-user fa-2x"></i>
             <span>{userName}</span>
           </Link>

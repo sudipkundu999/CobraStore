@@ -15,7 +15,7 @@ header {
 
 .products-filter-aside {
   grid-area: sidebar;
-  height: 92vh;
+  height: 93.5vh;
   position: sticky;
   top: 0;
   padding: 2rem;
@@ -28,6 +28,7 @@ header {
 .products-main {
   grid-area: main;
   padding: 3rem;
+  padding-bottom: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
