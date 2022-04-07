@@ -141,18 +141,19 @@ const AuthProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
-    responseVerifyUser !== undefined &&
+    if (responseVerifyUser !== undefined) {
+      setUserName(responseVerifyUser.user.firstName);
+      setIsUserLoggedIn(true);
+      setUserData({
+        firstName: responseVerifyUser.user.firstName,
+        lastName: responseVerifyUser.user.lastName,
+        email: responseVerifyUser.user.email,
+        password: responseVerifyUser.user.password,
+      });
       setTimeout(() => {
-        setUserName(responseVerifyUser.user.firstName);
-        setIsUserLoggedIn(true);
-        setUserData({
-          firstName: responseVerifyUser.user.firstName,
-          lastName: responseVerifyUser.user.lastName,
-          email: responseVerifyUser.user.email,
-          password: responseVerifyUser.user.password,
-        });
         notifySuccess(`Welcome back ${responseVerifyUser.user.firstName}`);
       }, 1000);
+    }
   }, [responseVerifyUser]);
 
   const logoutHandler = () => {
