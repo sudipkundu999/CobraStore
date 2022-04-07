@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useCart, useWishlist } from "../contexts";
 import { notifyDefault } from "../utils";
 import "./component-css/productCard.css";
 export const ProductCard = ({ product }) => {
-  const { name, author, price, image, inStock, badge, rating } = product;
+  const { _id, name, author, price, image, inStock, badge, rating } = product;
 
   const { wishlistToShow, addToWishlist, removeFromWishlist } = useWishlist();
   const isProductInWishlist = wishlistToShow.findIndex(
@@ -49,7 +49,9 @@ export const ProductCard = ({ product }) => {
         <img src={image} alt={name} />
       </div>
       <div className="card-details-container">
-        <div className="card-title">{name}</div>
+        <Link to={`/products/${_id}`}>
+          <div className="card-title">{name}</div>
+        </Link>
         <div className="card-seller">by {author}</div>
         <div className="card-price">
           <span className="card-current-price">₹{price.current}</span>

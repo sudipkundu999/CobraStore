@@ -15,6 +15,7 @@ import {
   Login,
   Mock,
   Page404,
+  ProductDetails,
   Products,
   Signup,
   User,
@@ -39,6 +40,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
         </Route>
         <Route path="/products" element={<Products />} />
+        <Route path="/products/:productId" element={<ProductDetails />} />
         <Route path="/mock" element={<Mock />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
