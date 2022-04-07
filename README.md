@@ -47,6 +47,8 @@ From **Products** page
 - add/remove items to your Wishlist
 - add items to your Cart by clicking on **Add to Cart**. Clicking on **Buy Now** adds the product to cart and takes the user to cart
 
+- on clicking the product name, it will take the user to the product detail page which contains the description of that product.
+
 From **WishList** page
 
 - remove Items from your WishList
