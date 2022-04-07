@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth, useCart, useWishlist } from "../contexts";
 import { notifyDefault } from "../utils";
 import "./component-css/productCard.css";
@@ -19,8 +19,12 @@ export const ProductCard = ({ product }) => {
 
   const navigate = useNavigate();
 
+  const location = useLocation();
   const notLoggedInHandler = () => {
-    navigate("/login");
+    navigate("/login", {
+      state: { from: location },
+      replace: true,
+    });
     notifyDefault("Please Login to continue");
   };
 
