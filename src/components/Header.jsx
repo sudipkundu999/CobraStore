@@ -16,7 +16,6 @@ export const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { productReducerDispatch, productReducerState } = useProducts();
-  // const search = productReducerState.filterBySearch;
   useEffect(
     () =>
       productReducerState.filterBySearch.trim() &&

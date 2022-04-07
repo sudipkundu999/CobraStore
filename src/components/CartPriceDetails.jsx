@@ -59,7 +59,6 @@ export const CartPriceDetails = () => {
       <button
         className="btn"
         onClick={() => {
-          // cartReducerDispatch({ type: "RESET" });
           placeOrder();
           notifySuccess("ORDER PLACED!");
           navigate("/products");

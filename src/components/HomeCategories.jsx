@@ -9,13 +9,6 @@ const HomeCategory = ({ category }) => {
   return (
     <div
       className="category-card"
-      // This code is for future use when I will implement useSearchParams() in productFilter.jsx
-      // onClick={() =>
-      //   navigate({
-      //     pathname: "/products",
-      //     search: `?category=${category}`,
-      //   })
-      // }
       onClick={() => {
         dispatch({
           type: "FILTER_BY_CATEGORY_FROM_HOMEPAGE",
