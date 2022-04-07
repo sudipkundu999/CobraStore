@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { notifyError, notifyInfo, notifySuccess, useAxios } from "../utils";
 
 const AuthContext = createContext();
@@ -8,6 +8,7 @@ const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const initialFromState = {
     firstName: "",
     lastName: "",
@@ -46,7 +47,7 @@ const AuthProvider = ({ children }) => {
       method: "post",
       url: "/api/auth/login",
       headers: { accept: "*/*" },
-      data: { email: "guest@cobrastore.com", password: "cobrastore" },
+      data: { email: "neog@cobrastore.com", password: "neogcamp" },
     });
   };
 
@@ -63,9 +64,7 @@ const AuthProvider = ({ children }) => {
       setFormData(initialFromState);
       notifySuccess("Login Successful");
       localStorage.setItem("cobraToken", responseLogin.encodedToken);
-      setTimeout(() => {
-        navigate("/products");
-      }, 250);
+      navigate(location.state?.from?.pathname || "/user");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [responseLogin]);
@@ -114,9 +113,7 @@ const AuthProvider = ({ children }) => {
         "CobraStore currently runs on mock backend so signup details won't persist on page reload"
       );
       localStorage.setItem("cobraToken", responseSignup.encodedToken);
-      setTimeout(() => {
-        navigate("/products");
-      }, 250);
+      navigate("/products");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [responseSignup]);
@@ -141,18 +138,19 @@ const AuthProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
-    responseVerifyUser !== undefined &&
+    if (responseVerifyUser !== undefined) {
+      setUserName(responseVerifyUser.user.firstName);
+      setIsUserLoggedIn(true);
+      setUserData({
+        firstName: responseVerifyUser.user.firstName,
+        lastName: responseVerifyUser.user.lastName,
+        email: responseVerifyUser.user.email,
+        password: responseVerifyUser.user.password,
+      });
       setTimeout(() => {
-        setUserName(responseVerifyUser.user.firstName);
-        setIsUserLoggedIn(true);
-        setUserData({
-          firstName: responseVerifyUser.user.firstName,
-          lastName: responseVerifyUser.user.lastName,
-          email: responseVerifyUser.user.email,
-          password: responseVerifyUser.user.password,
-        });
         notifySuccess(`Welcome back ${responseVerifyUser.user.firstName}`);
       }, 1000);
+    }
   }, [responseVerifyUser]);
 
   const logoutHandler = () => {

@@ -15,22 +15,6 @@ export const ProductFilter = () => {
     filterByCategory,
   } = state;
 
-  // //TODO:show every filter in the url search so that if that link is sent to someone so it will land on the product page with those filters applied
-  // currently only going from homepage categories to product page was using this
-  // //This code is for future use
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const categoryFromSearchParam = searchParams.get("category");
-  // useEffect(
-  //   () =>
-  //     categoryFromSearchParam !== null &&
-  //     dispatch({
-  //       type: "FILTER_BY_CATEGORY_FROM_HOMEPAGE",
-  //       payload: categoryFromSearchParam,
-  //     }),
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   [categoryFromSearchParam]
-  // );
-
   return (
     <aside className="products-filter-aside">
       <div className="filter filter-heading">
@@ -90,8 +74,6 @@ export const ProductFilter = () => {
               name="category"
               value={item}
               onChange={(e) => {
-                //The below code is for future use
-                // setSearchParams("");
                 dispatch({
                   type: "FILTER_BY_CATEGORY",
                   payload: e.target.value,

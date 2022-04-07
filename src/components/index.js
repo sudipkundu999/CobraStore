@@ -6,5 +6,5 @@ export { ProductCard } from "./ProductCard";
 export { CartCard } from "./CartCard";
 export { CartPriceDetails } from "./CartPriceDetails";
 export { ProductFilter } from "./ProductFilter";
-export { PrivateRoute } from "./PrivateRoute";
+export { RequiresAuth } from "./RequiresAuth";
 export { AuthRoutes } from "./AuthRoutes";

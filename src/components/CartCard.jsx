@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import { useCart, useWishlist } from "../contexts";
 import "./component-css/cartCard.css";
 
 export const CartCard = ({ product }) => {
-  const { id, name, author, price, image, badge, qty } = product;
+  const { _id, id, name, author, price, image, badge, qty } = product;
 
   const { wishlistToShow, addToWishlist, removeFromWishlist } = useWishlist();
   const isProductInWishlist = wishlistToShow.findIndex(
@@ -18,7 +19,9 @@ export const CartCard = ({ product }) => {
         <img src={image} alt={name} />
       </div>
       <div className="card-details-container">
-        <div className="card-title">{name}</div>
+        <Link to={`/products/${_id}`}>
+          <div className="card-title">{name}</div>
+        </Link>
         <div className="card-seller">by {author}</div>
         <div className="card-price">
           <span className="card-current-price">₹{price.current}</span>
@@ -69,7 +72,7 @@ export const CartCard = ({ product }) => {
                 addToWishlist(product);
               }}
             >
-              Move to wishlist
+              Add to wishlist
             </button>
           )}
         </div>

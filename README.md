@@ -6,7 +6,7 @@
 
 ### CobraStore is an e-commerce platform for book lovers. You can buy various books in your favourite category.
 
-![CobraStore gif](./cobrastore.gif)
+![](./showcase.gif)
 
 # [Live Website](https://cobra-store-react.netlify.app)
 
@@ -17,7 +17,6 @@
 ## 📕 Table of Contents
 
 - [Features](#🚀-features)
-- [Features you might see in the future](#✨-features-you-might-see-in-the-future)
 - [Instructions to run the app locally](#🔌-instructions-to-run-the-app-locally)
 - [Readme](#⚠️-caution)
 
@@ -25,47 +24,47 @@
 
 ## 🚀 Features
 
-From **Navbar**
+### From **Navbar**
 
 - Navigate to the Wishlist,Cart,Login and User profile page.
-- Clicking on CobraStore navigates back to homepage
+- Clicking on CobraStore navigates back to homepage.
+- Search for products.
 
-From **Home** page
+### From **Home** page
 
-- Clicking on **Buy Now** takes the user to the products page
+- Clicking on **Buy Now** takes the user to the products page.
 - Clicking on categories will take the user to the product page and show only products from that category.
 
-From **Products** page
+### From **Products** page
 
-- filter the products based on your preference:
+- Filter the products based on your preference:
 
-  - sort by Price
-  - filter by Category
-  - slider to filter by Price Range
-  - sort by Ratings
+  - Sort by Price
+  - Filter by Category
+  - Slider to filter by Price Range
+  - Sort by Ratings
 
-- add/remove items to your Wishlist
-- add items to your Cart by clicking on **Add to Cart**. Clicking on **Buy Now** adds the product to cart and takes the user to cart
+- Add/remove items to your Wishlist
+- Add items to your Cart by clicking on **Add to Cart**. Clicking on **Buy Now** adds the product to cart and takes the user to cart
 
-From **WishList** page
+- On clicking the product name, it will take the user to the product detail page which contains the description of that product.
 
-- remove Items from your WishList
-- add items to your Cart
+### From **WishList** page
 
-From **Cart** page
+- Remove Items from your WishList
+- Add items to your Cart
 
-- see the price card, containing total amount that you have to pay.
-- increase/decrease the quantity of an item
-- add/remove items to your WishList
-- remove items from your Cart
-- clicking on **Place Order** mimics the actual functionality of placing an order.
+### From **Cart** page
 
----
+- See the price card, containing total amount that you have to pay.
+- Increase/decrease the quantity of an item
+- Add/remove items to your WishList
+- Remove items from your Cart
+- Clicking on **Place Order** mimics the actual functionality of placing an order.
 
-## ✨ Features you might see in the future
+### Bonus
 
-- Search for product functionality in **Navbar**
-- Address Management
+- Dark Mode
 
 ---
 
