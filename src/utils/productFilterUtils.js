@@ -3,6 +3,7 @@ export const initialStateOfProductsFilter = {
   filterByRating: 4.0,
   filterByCategory: [],
   sortByPrice: null,
+  filterBySearch: "",
 };
 
 export const sortByPriceFunc = (howToSort) => {

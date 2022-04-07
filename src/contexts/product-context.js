@@ -65,6 +65,11 @@ const ProductProvider = ({ children }) => {
         ? true
         : state.filterByCategory.includes(x.category)
     )
+    .filter(
+      (x) =>
+        x.name.toUpperCase().includes(state.filterBySearch.toUpperCase()) ||
+        x.author.toUpperCase().includes(state.filterBySearch.toUpperCase())
+    )
     .sort(sortByPriceFunc(state.sortByPrice));
 
   return (
