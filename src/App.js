@@ -4,9 +4,9 @@ import "react-toastify/dist/ReactToastify.css";
 import "./toastify.css";
 import {
   Header,
-  PrivateRoute,
   AuthRoutes,
   ThemeToggleButton,
+  RequiresAuth,
 } from "./components";
 import { useTheme } from "./contexts";
 import {
@@ -34,7 +34,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Route>
-        <Route element={<PrivateRoute />}>
+        <Route element={<RequiresAuth />}>
           <Route path="/user" element={<User />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/cart" element={<Cart />} />
