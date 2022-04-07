@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useAuth } from "../contexts";
+import { useDocumentTitle } from "../utils";
 import "./pages-css/user.css";
 
 export const User = () => {
+  useDocumentTitle("User Profile");
   const { userData } = useAuth();
   const [togglePass, setTogglePass] = useState(false);
   const togglePassView = () => setTogglePass((x) => !x);

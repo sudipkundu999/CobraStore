@@ -1,9 +1,10 @@
 import "./pages-css/product-detail.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth, useCart, useProducts, useWishlist } from "../contexts";
-import { notifyDefault } from "../utils";
+import { notifyDefault, useDocumentTitle } from "../utils";
 
 export const ProductDetails = () => {
+  useDocumentTitle("Product Details");
   const { productsFromDB } = useProducts();
   const { productId } = useParams();
 
