@@ -7,6 +7,7 @@ import {
   AuthRoutes,
   ThemeToggleButton,
   RequiresAuth,
+  AddressPopup,
 } from "./components";
 import { useTheme } from "./contexts";
 import {
@@ -27,7 +28,7 @@ function App() {
   return (
     <div className={theme === "dark" ? "dark-mode-class" : ""}>
       <Header />
-
+      <AddressPopup />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route element={<AuthRoutes />}>

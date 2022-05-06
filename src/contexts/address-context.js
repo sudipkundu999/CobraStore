@@ -75,6 +75,9 @@ const AddressProvider = ({ children }) => {
     [responseAddress]
   );
 
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [selectedAddress, setSelectedAddress] = useState();
+
   return (
     <AddressContext.Provider
       value={{
@@ -83,6 +86,10 @@ const AddressProvider = ({ children }) => {
         addAddress,
         removeAddress,
         updateAddress,
+        isPopupVisible,
+        setIsPopupVisible,
+        selectedAddress,
+        setSelectedAddress,
       }}
     >
       {children}
