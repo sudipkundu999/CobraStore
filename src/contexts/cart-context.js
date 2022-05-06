@@ -68,21 +68,6 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  //This is a function that mocks the behaviour of clearing the cart on placing an order
-  const placeOrder = () => {
-    cartToShow.map((product) =>
-      operationCart({
-        method: "DELETE",
-        url: `/api/user/cart/${product._id}`,
-        headers: {
-          accept: "*/*",
-          authorization: localStorage.getItem("cobraToken"),
-        },
-        data: {},
-      })
-    );
-  };
-
   useEffect(
     () => responseCart !== undefined && setCartToShow(responseCart.cart),
     [responseCart]
@@ -123,7 +108,6 @@ const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         updateCountCart,
-        placeOrder,
         priceDetails,
       }}
     >

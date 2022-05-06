@@ -8,6 +8,7 @@ import {
   AddressProvider,
   AuthProvider,
   CartProvider,
+  OrdersProvider,
   ProductProvider,
   ThemeProvider,
   WishlistProvider,
@@ -25,7 +26,9 @@ ReactDOM.render(
             <WishlistProvider>
               <CartProvider>
                 <AddressProvider>
-                  <App />
+                  <OrdersProvider>
+                    <App />
+                  </OrdersProvider>
                 </AddressProvider>
               </CartProvider>
             </WishlistProvider>
