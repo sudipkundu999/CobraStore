@@ -31,7 +31,8 @@ header {
   padding-bottom: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  align-content: flex-start;
+  gap: 2rem;
 }
 
 .loading-screen {

@@ -11,9 +11,9 @@
   text-align: center;
 }
 
-.card {
+.wishlist-main .card {
   background-color: var(--white);
-  margin: 2rem;
+  margin: 1.5rem;
 }
 
 .cards-wrapper {
