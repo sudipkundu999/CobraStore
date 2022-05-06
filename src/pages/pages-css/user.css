@@ -6,16 +6,23 @@
   align-items: center;
 }
 
+.user-main .heading {
+  padding-bottom: 0;
+}
+
 .profile-details li {
   list-style: none;
 }
 
-.profile-details-wrapper {
-  margin-top: 2rem;
+.profile-details-wrapper,
+.address-details-wrapper {
+  margin: 2rem 0;
   background-color: var(--secondary);
   color: var(--white);
   padding: 2rem;
   border-radius: 10px;
+  position: relative;
+  min-height: 10rem;
 }
 
 .profile-details {
@@ -31,10 +38,11 @@
 .list-content {
   text-align: left;
   font-weight: 500;
-  padding-inline-start: 1.5rem;
+  padding-inline-start: 5px;
 }
 
-.profile-heading {
+.profile-heading,
+.address-heading {
   text-align: center;
   border-bottom: 1px solid var(--white);
   margin-bottom: 1rem;

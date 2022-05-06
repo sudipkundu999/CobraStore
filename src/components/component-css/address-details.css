@@ -1,0 +1,41 @@
+.address {
+  font-size: 1.8rem;
+  border-radius: 10px;
+  border: 1px solid var(--white);
+  padding: 2rem;
+  margin: 3rem 1rem;
+  text-align: center;
+}
+
+.address-cta {
+  display: flex;
+  justify-content: space-around;
+  font-size: 2rem;
+  margin-top: 2rem;
+}
+
+.address-cta i {
+  cursor: pointer;
+}
+
+.delete-address {
+  color: var(--danger);
+  cursor: pointer;
+}
+
+.delete-address:hover {
+  color: var(--red);
+}
+
+.add-address {
+  font-size: 3rem;
+  position: absolute;
+  bottom: 10px;
+  right: 45%;
+  cursor: pointer;
+}
+
+.add-address:hover,
+.edit-address:hover {
+  color: var(--nav-hover);
+}
