@@ -88,6 +88,33 @@ const CartProvider = ({ children }) => {
     [responseCart]
   );
 
+  let priceDetails = cartToShow.reduce(
+    (acc, curr) => ({
+      ...acc,
+      totalCount: acc.totalCount + curr.qty,
+      totalActualPrice: acc.totalActualPrice + curr.price.actual * curr.qty,
+      totalDiscount:
+        acc.totalDiscount + (curr.price.actual - curr.price.current) * curr.qty,
+    }),
+    {
+      totalCount: 0,
+      totalActualPrice: 0,
+      totalDiscount: 0,
+    }
+  );
+
+  const beforeAddingDeliveryAmount =
+    priceDetails.totalActualPrice - priceDetails.totalDiscount;
+  const deliveryAmount = beforeAddingDeliveryAmount < 500 ? 40 : 0;
+  const afterAddingDeliveryAmount = beforeAddingDeliveryAmount + deliveryAmount;
+
+  priceDetails = {
+    ...priceDetails,
+    beforeAddingDeliveryAmount: beforeAddingDeliveryAmount,
+    deliveryAmount: deliveryAmount,
+    afterAddingDeliveryAmount: afterAddingDeliveryAmount,
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -97,6 +124,7 @@ const CartProvider = ({ children }) => {
         removeFromCart,
         updateCountCart,
         placeOrder,
+        priceDetails,
       }}
     >
       {children}
