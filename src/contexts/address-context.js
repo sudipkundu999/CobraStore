@@ -77,6 +77,12 @@ const AddressProvider = ({ children }) => {
 
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState();
+  const [defaultAddress, setDefaultAddress] = useState();
+
+  useEffect(
+    () => addressToShow.length === 1 && setDefaultAddress(addressToShow[0]),
+    [addressToShow]
+  );
 
   return (
     <AddressContext.Provider
@@ -90,6 +96,8 @@ const AddressProvider = ({ children }) => {
         setIsPopupVisible,
         selectedAddress,
         setSelectedAddress,
+        defaultAddress,
+        setDefaultAddress,
       }}
     >
       {children}

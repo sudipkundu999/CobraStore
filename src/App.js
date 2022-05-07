@@ -12,6 +12,7 @@ import {
 import { useTheme } from "./contexts";
 import {
   Cart,
+  Checkout,
   Homepage,
   Login,
   Mock,
@@ -39,6 +40,7 @@ function App() {
           <Route path="/user" element={<User />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Route>
         <Route path="/products" element={<Products />} />
         <Route path="/products/:productId" element={<ProductDetails />} />

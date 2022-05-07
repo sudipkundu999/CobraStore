@@ -40,10 +40,12 @@ export const newOrderHandler = function (schema, request) {
       );
     }
     const userOrders = schema.users.findBy({ _id: userId }).orders;
-    const { items } = JSON.parse(request.requestBody);
+    const { order } = JSON.parse(request.requestBody);
     userOrders.push({
       _id: uuid(),
-      items: items,
+      items: order.items,
+      amount: order.amount,
+      address: order.address,
       createdAt: formatDate(),
     });
     this.db.users.update({ _id: userId }, { orders: userOrders, cart: [] });

@@ -93,11 +93,16 @@ const CartProvider = ({ children }) => {
   const deliveryAmount = beforeAddingDeliveryAmount < 500 ? 40 : 0;
   const afterAddingDeliveryAmount = beforeAddingDeliveryAmount + deliveryAmount;
 
+  const [isCouponApplied, setIsCouponApplied] = useState(false);
+  const afterAddingCouponDiscount =
+    afterAddingDeliveryAmount - (isCouponApplied ? 50 : 0);
+
   priceDetails = {
     ...priceDetails,
     beforeAddingDeliveryAmount: beforeAddingDeliveryAmount,
     deliveryAmount: deliveryAmount,
     afterAddingDeliveryAmount: afterAddingDeliveryAmount,
+    afterAddingCouponDiscount: afterAddingCouponDiscount,
   };
 
   return (
@@ -105,10 +110,13 @@ const CartProvider = ({ children }) => {
       value={{
         loadingCart,
         cartToShow,
+        setCartToShow,
         addToCart,
         removeFromCart,
         updateCountCart,
         priceDetails,
+        isCouponApplied,
+        setIsCouponApplied,
       }}
     >
       {children}

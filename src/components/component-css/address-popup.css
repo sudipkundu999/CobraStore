@@ -63,3 +63,9 @@
 .close-address-popup:hover {
   color: var(--danger);
 }
+
+.dummy-address {
+  width: 100%;
+  font-size: 1.4rem;
+  background-color: var(--success);
+}

@@ -9,6 +9,7 @@ export const Cart = () => {
 
   return (
     <main className="cart-main">
+      <div className="heading">Cart</div>
       <div className="cart-items">
         {cartToShow.map((product) => (
           <CartCard product={product} key={product.id} />

@@ -3,9 +3,12 @@
   margin: auto;
   height: calc(100vh - 6rem);
   display: flex;
-  justify-content: space-around;
   align-items: center;
   min-height: calc(100vh - 6rem);
+}
+
+.cart-main .heading {
+  padding-bottom: 0;
 }
 
 .cart-items {

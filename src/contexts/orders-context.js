@@ -32,7 +32,7 @@ const OrdersProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isUserLoggedIn]);
 
-  const placeOrder = (items) => {
+  const placeOrder = (order) => {
     operationOrders({
       method: "POST",
       url: "/api/user/orders",
@@ -40,7 +40,7 @@ const OrdersProvider = ({ children }) => {
         accept: "*/*",
         authorization: localStorage.getItem("cobraToken"),
       },
-      data: { items: items },
+      data: { order: order },
     });
   };
 
