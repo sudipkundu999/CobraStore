@@ -1,6 +1,7 @@
 .cart-main .card {
   background-color: var(--white);
   height: 27rem;
+  width: auto;
   margin: 2rem 0;
   transform: scale(0.9);
 }

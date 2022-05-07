@@ -59,7 +59,7 @@
 }
 
 @media screen and (max-width: 590px) {
-  .card-horizontal {
+  .product-detail-main .card-horizontal {
     min-height: 35rem;
   }
 

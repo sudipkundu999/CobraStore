@@ -53,6 +53,7 @@ header {
 
   .products-main {
     justify-content: center;
+    padding: 3rem 0;
   }
 
   .products-filter-aside {
@@ -79,5 +80,15 @@ header {
       "sidebar main main main main main main"
       "sidebar main main main main main main"
       "sidebar main main main main main main";
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .products-main {
+    grid-gap: 0;
+  }
+
+  .products-main .card {
+    transform: scale(0.95);
   }
 }
