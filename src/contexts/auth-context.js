@@ -147,9 +147,6 @@ const AuthProvider = ({ children }) => {
         email: responseVerifyUser.user.email,
         password: responseVerifyUser.user.password,
       });
-      setTimeout(() => {
-        notifySuccess(`Welcome back ${responseVerifyUser.user.firstName}`);
-      }, 1000);
     }
   }, [responseVerifyUser]);
 
