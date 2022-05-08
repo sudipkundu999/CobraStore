@@ -3,8 +3,16 @@
   margin: auto;
   height: calc(100vh - 6rem);
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   min-height: calc(100vh - 6rem);
+}
+
+.cart-wrapper {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
 }
 
 .cart-main .heading {
