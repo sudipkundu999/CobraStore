@@ -21,6 +21,10 @@ import {
   getCategoryHandler,
 } from "./backend/controllers/CategoryController";
 import {
+  getOrdersHandler,
+  newOrderHandler,
+} from "./backend/controllers/OrdersController";
+import {
   getAllProductsHandler,
   getProductHandler,
 } from "./backend/controllers/ProductController";
@@ -46,6 +50,7 @@ export function makeServer({ environment = "development" } = {}) {
       cart: Model,
       wishlist: Model,
       address: Model,
+      orders: Model,
     },
 
     // Runs on the start of the server
@@ -57,7 +62,13 @@ export function makeServer({ environment = "development" } = {}) {
       });
 
       users.forEach((item) =>
-        server.create("user", { ...item, cart: [], wishlist: [], address: [] })
+        server.create("user", {
+          ...item,
+          cart: [],
+          wishlist: [],
+          address: [],
+          orders: [],
+        })
       );
 
       categories.forEach((item) => server.create("category", { ...item }));
@@ -100,6 +111,10 @@ export function makeServer({ environment = "development" } = {}) {
       this.post("/user/address", addAddressHandler.bind(this));
       this.post("/user/address/:addressId", updateAddressHandler.bind(this));
       this.delete("/user/address/:addressId", deleteAddressHandler.bind(this));
+
+      // orders routes (private)
+      this.get("/user/orders", getOrdersHandler.bind(this));
+      this.post("/user/orders", newOrderHandler.bind(this));
     },
   });
 }

@@ -40,6 +40,19 @@ export const AddressPopup = () => {
     setIsPopupVisible(false);
   };
 
+  const fillDummyAddress = (e) => {
+    e.preventDefault();
+    setAddressFormData((prev) => ({
+      firstName: "Neog",
+      lastName: "Camp",
+      address: "D7,Elite Park",
+      city: "Bangalore",
+      state: "Karnataka",
+      pincode: "713492",
+      phone: "+917256349835",
+    }));
+  };
+
   return (
     <div
       className={`address-popup-container ${
@@ -149,6 +162,12 @@ export const AddressPopup = () => {
             }
             className="btn btn-primary m-auto"
           />
+          <button
+            className="btn dummy-address"
+            onClick={(e) => fillDummyAddress(e)}
+          >
+            Fill Dummy Address Details
+          </button>
         </form>
       </div>
     </div>

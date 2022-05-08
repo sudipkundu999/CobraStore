@@ -68,35 +68,55 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  //This is a function that mocks the behaviour of clearing the cart on placing an order
-  const placeOrder = () => {
-    cartToShow.map((product) =>
-      operationCart({
-        method: "DELETE",
-        url: `/api/user/cart/${product._id}`,
-        headers: {
-          accept: "*/*",
-          authorization: localStorage.getItem("cobraToken"),
-        },
-        data: {},
-      })
-    );
-  };
-
   useEffect(
     () => responseCart !== undefined && setCartToShow(responseCart.cart),
     [responseCart]
   );
+
+  let priceDetails = cartToShow.reduce(
+    (acc, curr) => ({
+      ...acc,
+      totalCount: acc.totalCount + curr.qty,
+      totalActualPrice: acc.totalActualPrice + curr.price.actual * curr.qty,
+      totalDiscount:
+        acc.totalDiscount + (curr.price.actual - curr.price.current) * curr.qty,
+    }),
+    {
+      totalCount: 0,
+      totalActualPrice: 0,
+      totalDiscount: 0,
+    }
+  );
+
+  const beforeAddingDeliveryAmount =
+    priceDetails.totalActualPrice - priceDetails.totalDiscount;
+  const deliveryAmount = beforeAddingDeliveryAmount < 500 ? 40 : 0;
+  const afterAddingDeliveryAmount = beforeAddingDeliveryAmount + deliveryAmount;
+
+  const [isCouponApplied, setIsCouponApplied] = useState(false);
+  const afterAddingCouponDiscount =
+    afterAddingDeliveryAmount - (isCouponApplied ? 50 : 0);
+
+  priceDetails = {
+    ...priceDetails,
+    beforeAddingDeliveryAmount: beforeAddingDeliveryAmount,
+    deliveryAmount: deliveryAmount,
+    afterAddingDeliveryAmount: afterAddingDeliveryAmount,
+    afterAddingCouponDiscount: afterAddingCouponDiscount,
+  };
 
   return (
     <CartContext.Provider
       value={{
         loadingCart,
         cartToShow,
+        setCartToShow,
         addToCart,
         removeFromCart,
         updateCountCart,
-        placeOrder,
+        priceDetails,
+        isCouponApplied,
+        setIsCouponApplied,
       }}
     >
       {children}

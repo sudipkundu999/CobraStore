@@ -11,3 +11,4 @@ export { AuthRoutes } from "./AuthRoutes";
 export { ProfileDetails } from "./ProfileDetails";
 export { AddressDetails } from "./AddressDetails";
 export { AddressPopup } from "./AddressPopup";
+export { OrderSummary } from "./OrderSummary";

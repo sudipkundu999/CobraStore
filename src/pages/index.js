@@ -8,3 +8,4 @@ export { Mock } from "./Mock";
 export { Page404 } from "./Page404";
 export { User } from "./User";
 export { ProductDetails } from "./ProductDetails";
+export { Checkout } from "./Checkout";

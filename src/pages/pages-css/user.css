@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  padding-bottom: 5rem;
 }
 
 .user-main .heading {
@@ -63,6 +64,49 @@
 
 .list-content li:last-child {
   position: relative;
+}
+
+.user-orders-summary-wrapper {
+  background-color: var(--secondary);
+  padding: 2rem 1rem;
+  border-radius: 10px;
+}
+
+.orders-heading {
+  color: var(--white);
+  font-size: 2.5rem;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid var(--white);
+}
+
+.user-order {
+  color: var(--white);
+  font-size: 2rem;
+  background-color: var(--primary);
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 2rem 0;
+}
+
+.wrap {
+  width: 12.5rem;
+  display: inline-block;
+}
+
+.address-details-wrapper,
+.user-orders-summary-wrapper {
+  min-width: 40rem;
+}
+
+.no-orders {
+  color: var(--white);
+  font-size: 2.5rem;
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+  font-weight: 500;
 }
 
 @media screen and (max-width: 450px) {

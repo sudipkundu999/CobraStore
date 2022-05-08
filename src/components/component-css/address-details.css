@@ -35,7 +35,12 @@
   cursor: pointer;
 }
 
+.default-address-selected {
+  color: var(--success);
+}
+
 .add-address:hover,
-.edit-address:hover {
+.edit-address:hover,
+.default-address:hover {
   color: var(--nav-hover);
 }

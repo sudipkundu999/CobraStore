@@ -23,6 +23,6 @@
 
 @media screen and (max-width: 1000px) {
   .home-categories {
-    margin: 10rem 15rem;
+    margin: 10rem 0;
   }
 }

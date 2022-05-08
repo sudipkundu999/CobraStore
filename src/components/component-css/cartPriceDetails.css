@@ -1,6 +1,6 @@
 .cart-price-details {
   width: 35rem;
-  height: 26rem;
+  height: max-content;
   background-color: var(--white);
   padding: 2rem;
   border-radius: 5px;
@@ -20,7 +20,7 @@
   font-weight: 400;
 }
 
-.cart-price-details .btn {
+.cart-price-details .payment-btn {
   width: 100%;
   margin-top: 1rem;
   background-color: var(--yellow-bright);
@@ -31,4 +31,42 @@
 .free-delivery {
   font-size: 1.25rem;
   text-align: center;
+}
+
+.coupon-code-wrapper {
+  font-size: 2rem;
+  font-weight: 500;
+  padding: 0 5rem 1rem 0;
+}
+
+.coupon-code-wrapper span {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.coupon-code {
+  display: flex;
+  gap: 5px;
+}
+
+.coupon-code input {
+  font-size: 1.7rem;
+  width: fit-content;
+  padding: 5px 10px;
+  border: 1px solid var(--secondary);
+  border-radius: 10px;
+  outline: none;
+}
+
+.coupon-code input:focus {
+  border: 1px solid var(--nav-hover);
+  outline: 1px solid var(--nav-hover);
+}
+
+.coupon-discount {
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey);
 }

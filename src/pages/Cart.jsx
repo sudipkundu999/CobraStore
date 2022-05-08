@@ -9,13 +9,16 @@ export const Cart = () => {
 
   return (
     <main className="cart-main">
-      <div className="cart-items">
-        {cartToShow.map((product) => (
-          <CartCard product={product} key={product.id} />
-        ))}
-      </div>
+      <div className="heading">Cart</div>
+      <div className="cart-wrapper">
+        <div className="cart-items">
+          {cartToShow.map((product) => (
+            <CartCard product={product} key={product.id} />
+          ))}
+        </div>
 
-      <CartPriceDetails />
+        <CartPriceDetails />
+      </div>
     </main>
   );
 };

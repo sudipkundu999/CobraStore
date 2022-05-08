@@ -7,6 +7,8 @@ export const AddressDetails = () => {
     setIsPopupVisible,
     removeAddress,
     setSelectedAddress,
+    defaultAddress,
+    setDefaultAddress,
   } = useAddress();
 
   return (
@@ -34,6 +36,14 @@ export const AddressDetails = () => {
                 setIsPopupVisible(true);
               }}
             />
+            {defaultAddress?._id === address._id ? (
+              <i className="fas fa-check-circle default-address default-address-selected" />
+            ) : (
+              <i
+                className="far fa-check-circle default-address"
+                onClick={() => setDefaultAddress(address)}
+              />
+            )}
             <i
               className="fas fa-trash delete-address"
               title="Delete Address"
