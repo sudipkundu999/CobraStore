@@ -43,6 +43,7 @@ export const newOrderHandler = function (schema, request) {
     const { order } = JSON.parse(request.requestBody);
     userOrders.push({
       _id: uuid(),
+      paymentId: order.paymentId,
       items: order.items,
       amount: order.amount,
       address: order.address,

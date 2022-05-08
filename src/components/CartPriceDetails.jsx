@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAddress, useCart, useOrders } from "../contexts";
+import { useAddress, useAuth, useCart, useOrders } from "../contexts";
 import { notifyError, notifySuccess } from "../utils";
 import "./component-css/cartPriceDetails.css";
 
 export const CartPriceDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { userData } = useAuth();
   const { defaultAddress } = useAddress();
   const { placeOrder } = useOrders();
   const {
@@ -37,26 +38,71 @@ export const CartPriceDetails = () => {
     }
   };
 
-  const placeOrderHandler = () => {
-    if (defaultAddress !== undefined) {
-      const order = {
-        items: cartToShow.map((item) => ({
-          qty: item.qty,
-          name: item.name,
-        })),
-        amount: afterAddingCouponDiscount,
-        address: defaultAddress.address,
+  const initializeRazorpay = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+
+      script.onload = () => {
+        resolve(true);
       };
-      placeOrder(order);
-      setCartToShow([]);
-      setCoupon("");
-      setIsCouponApplied(false);
-      notifySuccess("Order Placed");
-      navigate("/user");
+      script.onerror = () => {
+        resolve(false);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
+
+  const placeOrderHandler = async () => {
+    if (defaultAddress !== undefined) {
+      const res = await initializeRazorpay();
+
+      if (!res) {
+        notifyError("Razorpay SDK Failed to load");
+        return;
+      }
+
+      const options = {
+        key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+        currency: "INR",
+        amount: afterAddingCouponDiscount * 100,
+        name: "CobraStore",
+        description: "An e-commerce platform for book lovers",
+        handler: function (response) {
+          if (response && response.razorpay_payment_id) {
+            const order = {
+              items: cartToShow.map((item) => ({
+                qty: item.qty,
+                name: item.name,
+              })),
+              amount: afterAddingCouponDiscount,
+              address: defaultAddress.address,
+              paymentId: response.razorpay_payment_id,
+            };
+            placeOrder(order);
+            setCartToShow([]);
+            setCoupon("");
+            setIsCouponApplied(false);
+            notifySuccess("Order Placed");
+            navigate("/user");
+          }
+        },
+        prefill: {
+          name: defaultAddress.firstName,
+          email: userData.email,
+          contact: defaultAddress.phone,
+          method: "netbanking",
+        },
+      };
+
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
     } else {
       notifyError("Add address to continue");
     }
   };
+
   return (
     totalCount !== 0 && (
       <div className="cart-price-details">

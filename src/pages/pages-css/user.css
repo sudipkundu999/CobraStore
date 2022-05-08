@@ -90,6 +90,11 @@
   margin: 2rem 0;
 }
 
+.wrap {
+  width: 12.5rem;
+  display: inline-block;
+}
+
 .address-details-wrapper,
 .user-orders-summary-wrapper {
   min-width: 40rem;

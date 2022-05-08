@@ -16,9 +16,10 @@ export const User = () => {
         {ordersToShow.length !== 0 ? (
           ordersToShow.map((order, index) => (
             <div className="user-order" key={index}>
-              Order ID : {order._id} <br />
-              Address : {order.address} <br />
-              Total Amount : ₹{order.amount}
+              <div className="wrap">Order ID </div>: {order._id} <br />
+              <div className="wrap">Payment ID </div>: {order.paymentId} <br />
+              <div className="wrap">Address</div>: {order.address} <br />
+              <div className="wrap">Total Amount</div>: ₹{order.amount}
               <OrderSummary arrayToShow={order.items} />
             </div>
           ))
