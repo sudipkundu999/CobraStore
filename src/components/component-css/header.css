@@ -38,6 +38,13 @@ header {
   right: 15px;
 }
 
+.search-wrapper {
+  border: none;
+  color: black;
+  background-color: inherit;
+  font-size: 1.5rem;
+}
+
 @media screen and (max-width: 680px) {
   header {
     height: 10.5rem;
@@ -49,6 +56,7 @@ header {
   }
 
   .search-mobile {
+    padding: 0;
     display: block;
     width: 90%;
     margin: auto;

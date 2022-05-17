@@ -23,10 +23,6 @@
   background: #ebecf0;
 }
 
-.card-favourite {
-  z-index: 2;
-}
-
 .products-main .btn-outline,
 .wishlist-main .btn-outline,
 .product-detail-main .btn-outline {

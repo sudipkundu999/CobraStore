@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Select from "react-select";
 import { useCart, useProducts, useWishlist } from "../contexts";
 import { useAuth } from "../contexts/auth-context";
 import "./component-css/header.css";
@@ -14,16 +14,11 @@ export const Header = () => {
   const cartCount = cartToShow.reduce((acc, curr) => (acc = acc + curr.qty), 0);
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const { productReducerDispatch, productReducerState } = useProducts();
-  useEffect(
-    () =>
-      productReducerState.filterBySearch.trim() &&
-      location.pathname !== "/products" &&
-      navigate("/products"),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [productReducerState.filterBySearch]
-  );
+  const { productsFromDB } = useProducts();
+  const searchOptions = productsFromDB.map((item) => ({
+    ...item,
+    label: item.name + " by " + item.author,
+  }));
 
   return (
     <header>
@@ -31,18 +26,16 @@ export const Header = () => {
         <Link to="/">
           <h2>CobraStore</h2>
         </Link>
-        <input
-          value={productReducerState.filterBySearch}
-          type="text"
-          placeholder="Search"
-          className="nav-search search-desktop"
-          onChange={(e) =>
-            productReducerDispatch({
-              type: "FILTER_BY_SEARCH",
-              payload: e.target.value,
-            })
-          }
-        />
+        <div className="nav-search search-desktop search-wrapper">
+          <Select
+            options={searchOptions}
+            isClearable="true"
+            placeholder="Search"
+            onChange={(opt) =>
+              opt && navigate(`/products/${opt?._id}`, { replace: true })
+            }
+          />
+        </div>
         <div className="nav-right">
           {isUserLoggedIn && (
             <button className="btn btn-secondary" onClick={logoutHandler}>
@@ -69,18 +62,16 @@ export const Header = () => {
           </Link>
         </div>
       </div>
-      <input
-        value={productReducerState.filterBySearch}
-        type="text"
-        placeholder="Search"
-        className="nav-search search-mobile"
-        onChange={(e) =>
-          productReducerDispatch({
-            type: "FILTER_BY_SEARCH",
-            payload: e.target.value,
-          })
-        }
-      />
+      <div className="nav-search search-mobile search-wrapper">
+        <Select
+          options={searchOptions}
+          isClearable="true"
+          placeholder="Search"
+          onChange={(opt) =>
+            opt && navigate(`/products/${opt?._id}`, { replace: true })
+          }
+        />
+      </div>
     </header>
   );
 };

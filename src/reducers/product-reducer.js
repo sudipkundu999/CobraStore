@@ -20,8 +20,6 @@ export const productReducerFunc = (state, action) => {
       };
     case "SORT_BY_PRICE":
       return { ...state, sortByPrice: action.payload };
-    case "FILTER_BY_SEARCH":
-      return { ...state, filterBySearch: action.payload };
     default:
       return initialStateOfProductsFilter;
   }
