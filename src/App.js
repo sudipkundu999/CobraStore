@@ -2,13 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./toastify.css";
-import {
-  Header,
-  AuthRoutes,
-  ThemeToggleButton,
-  RequiresAuth,
-  AddressPopup,
-} from "./components";
+import { Header, AuthRoutes, RequiresAuth, AddressPopup } from "./components";
 import { useTheme } from "./contexts";
 import {
   Cart,
@@ -49,7 +43,6 @@ function App() {
       </Routes>
 
       <ToastContainer />
-      <ThemeToggleButton />
     </div>
   );
 }

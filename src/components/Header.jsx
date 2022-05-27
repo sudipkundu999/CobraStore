@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Select from "react-select";
-import { useCart, useProducts, useWishlist } from "../contexts";
+import { useCart, useProducts, useTheme, useWishlist } from "../contexts";
 import { useAuth } from "../contexts/auth-context";
 import "./component-css/header.css";
 
@@ -20,6 +20,8 @@ export const Header = () => {
     label: item.name + " by " + item.author,
   }));
 
+  const { theme, toggleDarkMode } = useTheme();
+
   return (
     <header>
       <div className="navigation-container">
@@ -38,9 +40,23 @@ export const Header = () => {
         </div>
         <div className="nav-right">
           {isUserLoggedIn && (
-            <button className="btn btn-secondary" onClick={logoutHandler}>
+            <button
+              className="btn btn-secondary logout-btn"
+              onClick={logoutHandler}
+            >
               Logout
             </button>
+          )}
+          {theme === "light" ? (
+            <i
+              className="fas fa-moon fa-3x theme-toggle"
+              onClick={() => toggleDarkMode()}
+            />
+          ) : (
+            <i
+              className="fas fa-sun fa-3x theme-toggle"
+              onClick={() => toggleDarkMode()}
+            />
           )}
           <Link className="nav-links" to={isUserLoggedIn ? `/user` : `/login`}>
             <i className="fas fa-user fa-2x"></i>

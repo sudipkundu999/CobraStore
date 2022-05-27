@@ -45,6 +45,24 @@ header {
   font-size: 1.5rem;
 }
 
+/* To override search option css */
+.css-9gakcf-option {
+  background-color: var(--white) !important;
+  color: var(--black) !important;
+}
+
+.theme-toggle {
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  color: var(--nav-hover);
+}
+
+.logout-btn {
+  margin-right: 1rem;
+}
+
 @media screen and (max-width: 680px) {
   header {
     height: 10.5rem;
@@ -63,8 +81,12 @@ header {
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .navigation-container {
     padding: 0 1rem;
+  }
+
+  .nav-links {
+    margin-left: 1rem;
   }
 }

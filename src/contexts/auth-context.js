@@ -47,7 +47,7 @@ const AuthProvider = ({ children }) => {
       method: "post",
       url: "/api/auth/login",
       headers: { accept: "*/*" },
-      data: { email: "neog@cobrastore.com", password: "neogcamp" },
+      data: { email: "alex@cobrastore.com", password: "cobrastore" },
     });
   };
 
