@@ -50,12 +50,15 @@ const OrdersProvider = ({ children }) => {
     [responseOrders]
   );
 
+  const [selectedTab, setSelectedTab] = useState(1);
   return (
     <OrdersContext.Provider
       value={{
         loadingOrders,
         ordersToShow,
         placeOrder,
+        selectedTab,
+        setSelectedTab,
       }}
     >
       {children}

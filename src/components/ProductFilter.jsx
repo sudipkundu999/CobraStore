@@ -21,7 +21,7 @@ export const ProductFilter = ({ toggleSidebarVisible, isFilterVisible }) => {
     >
       <div className="filter filter-heading">
         <i
-          class="fas fa-times close-filter-btn"
+          className="fas fa-times close-filter-btn"
           onClick={() => toggleSidebarVisible()}
         />
         <h3>Filter</h3>

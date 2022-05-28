@@ -12,7 +12,7 @@ export const Products = () => {
   return (
     <div className="products-body">
       <i
-        class="fas fa-bars fa-3x filter-mobile-btn"
+        className="fas fa-bars fa-3x filter-mobile-btn"
         onClick={() => toggleSidebarVisible()}
       />
       <ProductFilter

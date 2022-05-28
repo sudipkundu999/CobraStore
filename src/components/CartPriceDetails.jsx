@@ -9,7 +9,7 @@ export const CartPriceDetails = () => {
   const location = useLocation();
   const { userData } = useAuth();
   const { defaultAddress } = useAddress();
-  const { placeOrder } = useOrders();
+  const { placeOrder, setSelectedTab } = useOrders();
   const {
     cartToShow,
     setCartToShow,
@@ -86,6 +86,7 @@ export const CartPriceDetails = () => {
             setIsCouponApplied(false);
             notifySuccess("Order Placed");
             navigate("/user");
+            setSelectedTab(3);
           }
         },
         prefill: {
