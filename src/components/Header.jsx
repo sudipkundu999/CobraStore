@@ -47,17 +47,12 @@ export const Header = () => {
               Logout
             </button>
           )}
-          {theme === "light" ? (
-            <i
-              className="fas fa-moon fa-3x theme-toggle"
-              onClick={() => toggleDarkMode()}
-            />
-          ) : (
-            <i
-              className="fas fa-sun fa-3x theme-toggle"
-              onClick={() => toggleDarkMode()}
-            />
-          )}
+          <i
+            className={`fas fa-${
+              theme === "light" ? "moon" : "sun"
+            } fa-3x theme-toggle`}
+            onClick={() => toggleDarkMode()}
+          />
           <Link className="nav-links" to={isUserLoggedIn ? `/user` : `/login`}>
             <i className="fas fa-user fa-2x"></i>
             <span>{userName}</span>
