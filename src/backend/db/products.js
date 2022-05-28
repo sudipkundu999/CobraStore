@@ -152,4 +152,32 @@ export const products = [
     description:
       "This collection of mystical poetry focuses on one of life's core issues: coming to grips with the inner life. During the course of life, each of us is engaged on an inner journey. Rumi's Little Book of Life is a guidebook for that journey. The poetry is a companion for those who consciously enter the inner world to explore the gardens within--out of the everyday \"world of dust\"",
   },
+  {
+    _id: "CobraStore011",
+    id: 11,
+    name: "The Song of Achilles",
+    author: "Madeline Miller",
+    category: "Fiction",
+    price: { current: 599, actual: 395 },
+    image: getImg(11),
+    inStock: true,
+    badge: "",
+    rating: 4.4,
+    description:
+      "The story is told from the perspective of Patroclus who, exiled by his father to live in the court of Peleus, soon falls in love with his host's son, the superhuman Achilles: from childhood, his demi-god status means he is swifter, more beautiful and more skilled than all his peers.",
+  },
+  {
+    _id: "CobraStore012",
+    id: 12,
+    name: "A Man Called Ove",
+    author: "Fredrik Backman",
+    category: "Fiction",
+    price: { current: 399, actual: 274 },
+    image: getImg(12),
+    inStock: true,
+    badge: "",
+    rating: 4.2,
+    description:
+      "Ove (Rolf Lassgård) is the quintessential angry old man next door. An isolated retiree with strict principles and a short fuse, who spends his days enforcing block association rules that only he cares about, and visiting his wife's grave, Ove has given up on life. After a boisterous young family moves in next door and accidentally flattens Ove's mailbox, an unlikely friendship forms.",
+  },
 ];
