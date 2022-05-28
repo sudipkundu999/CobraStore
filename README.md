@@ -4,7 +4,7 @@
 
 <img alt="logo" src="public\images\logo.png" />
 
-# [CobraStore](https://cobra-tube.netlify.app/)
+# [CobraStore](https://cobra-store.netlify.app/)
 
 ## CobraStore is an e-commerce platform for book lovers.
 
