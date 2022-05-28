@@ -10,6 +10,18 @@
   width: 100%;
 }
 
+.login-signup-main input:focus {
+  outline: none;
+}
+
+.input-success {
+  border: 2px solid var(--success) !important;
+}
+
+.input-error {
+  border: 2px solid var(--danger) !important;
+}
+
 #login-remember-me {
   width: auto;
   display: inline;

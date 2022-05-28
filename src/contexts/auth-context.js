@@ -25,6 +25,13 @@ const AuthProvider = ({ children }) => {
     password: "",
   });
 
+  const formValidation = {
+    isValidEmail: !!formData.email.match(/^[\w-.]+@([\w-]+\.)+[\w]{2,4}$/),
+    isValidPassword: formData.password.length >= 8,
+    isValidFirstName: formData.firstName.length >= 2,
+    isValidLastName: formData.lastName.length >= 2,
+  };
+
   //Login
   const {
     response: responseLogin,
@@ -176,6 +183,7 @@ const AuthProvider = ({ children }) => {
         logoutHandler,
         userData,
         loginAsGuest,
+        formValidation,
       }}
     >
       {children}
