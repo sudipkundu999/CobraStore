@@ -7,22 +7,26 @@ const HomeCategory = ({ category }) => {
   const { productReducerDispatch: dispatch } = useProducts();
 
   return (
-    <div
-      className="category-card"
-      onClick={() => {
-        dispatch({
-          type: "FILTER_BY_CATEGORY_FROM_HOMEPAGE",
-          payload: category,
-        });
-        navigate("/products");
-      }}
-    >
-      <img
-        className="img-fluid"
-        src={process.env.PUBLIC_URL + "/images/categoryImage.jpg"}
-        alt="categories"
-      />
-      <h2>{category}</h2>
+    <div className="category-card-wrapper">
+      <div className="category-card">
+        <img
+          src={process.env.PUBLIC_URL + `/images/${category}.jpg`}
+          className="img-fluid category-image"
+          alt={category}
+        />
+        <div
+          className="category-hover"
+          onClick={() => {
+            dispatch({
+              type: "FILTER_BY_CATEGORY_FROM_HOMEPAGE",
+              payload: category,
+            });
+            navigate("/products");
+          }}
+        >
+          {category}
+        </div>
+      </div>
     </div>
   );
 };

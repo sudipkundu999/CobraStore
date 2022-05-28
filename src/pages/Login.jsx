@@ -5,7 +5,8 @@ import "./pages-css/login.css";
 
 export const Login = () => {
   useDocumentTitle("Login");
-  const { formData, setFormData, onSubmitLogin, loginAsGuest } = useAuth();
+  const { formData, setFormData, onSubmitLogin, loginAsGuest, formValidation } =
+    useAuth();
 
   return (
     <main className="login-signup-main">
@@ -15,7 +16,10 @@ export const Login = () => {
           <label>
             Email address
             <input
-              className="email"
+              className={`email ${
+                formData.email.length !== 0 &&
+                (formValidation.isValidEmail ? "input-success" : "input-error")
+              }`}
               type="email"
               id="login-email"
               placeholder="user@cobrastore.com"
@@ -29,7 +33,12 @@ export const Login = () => {
           <label>
             Password
             <input
-              className="password"
+              className={`password ${
+                formData.password.length !== 0 &&
+                (formValidation.isValidPassword
+                  ? "input-success"
+                  : "input-error")
+              }`}
               type="password"
               id="login-password"
               placeholder="********"

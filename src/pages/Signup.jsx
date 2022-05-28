@@ -5,7 +5,7 @@ import "./pages-css/login.css";
 
 export const Signup = () => {
   useDocumentTitle("Signup");
-  const { formData, setFormData, onSubmitSignup } = useAuth();
+  const { formData, setFormData, onSubmitSignup, formValidation } = useAuth();
 
   return (
     <main className="login-signup-main">
@@ -15,7 +15,12 @@ export const Signup = () => {
           <label>
             First name
             <input
-              className="signup-text-input"
+              className={`signup-text-input ${
+                formData.firstName.length !== 0 &&
+                (formValidation.isValidFirstName
+                  ? "input-success"
+                  : "input-error")
+              }`}
               placeholder="Sudip"
               type="text"
               onChange={(e) =>
@@ -27,7 +32,12 @@ export const Signup = () => {
           <label>
             Last name
             <input
-              className="signup-text-input"
+              className={`signup-text-input ${
+                formData.lastName.length !== 0 &&
+                (formValidation.isValidLastName
+                  ? "input-success"
+                  : "input-error")
+              }`}
               placeholder="Kundu"
               type="text"
               onChange={(e) =>
@@ -39,7 +49,10 @@ export const Signup = () => {
           <label>
             Email address
             <input
-              className="email"
+              className={`email ${
+                formData.email.length !== 0 &&
+                (formValidation.isValidEmail ? "input-success" : "input-error")
+              }`}
               type="email"
               placeholder="sk@cobrastore.com"
               value={formData.email}
@@ -52,7 +65,12 @@ export const Signup = () => {
           <label>
             Password
             <input
-              className="password"
+              className={`password ${
+                formData.password.length !== 0 &&
+                (formValidation.isValidPassword
+                  ? "input-success"
+                  : "input-error")
+              }`}
               type="password"
               placeholder="********"
               value={formData.password}

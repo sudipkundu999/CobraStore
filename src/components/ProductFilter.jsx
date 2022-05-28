@@ -1,7 +1,7 @@
 import { useProducts } from "../contexts";
 import "./component-css/productFilter.css";
 
-export const ProductFilter = () => {
+export const ProductFilter = ({ toggleSidebarVisible, isFilterVisible }) => {
   const {
     categoriesFromDB,
     productReducerState: state,
@@ -16,8 +16,14 @@ export const ProductFilter = () => {
   } = state;
 
   return (
-    <aside className="products-filter-aside">
+    <aside
+      className={`products-filter-aside ${isFilterVisible && "filter-mobile"}`}
+    >
       <div className="filter filter-heading">
+        <i
+          className="fas fa-times close-filter-btn"
+          onClick={() => toggleSidebarVisible()}
+        />
         <h3>Filter</h3>
         <span>
           <button

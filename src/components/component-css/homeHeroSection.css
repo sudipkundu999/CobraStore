@@ -1,6 +1,5 @@
 .hero-section {
   width: 100vw;
-  height: 30rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,19 +9,34 @@
   background-size: cover;
 }
 
-.hero-text {
-  font-size: 4rem;
-  font-weight: 600;
-}
-
-.hero-text-off {
-  font-size: 3.2rem;
-}
-
-.hero-text-small {
-  font-size: 2.5rem;
+.carousal {
+  width: inherit;
+  position: relative;
 }
 
 .btn-hero {
-  background: var(--black);
+  background: var(--secondary);
+  outline: 1px solid var(--nav-hover);
+  font-size: 1.5rem;
+  position: absolute;
+  top: 88%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (min-width: 1200px) {
+  .carousal {
+    max-width: 120rem;
+  }
+
+  .btn-hero {
+    font-size: 2.25rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .btn-hero {
+    top: 120%;
+  }
 }

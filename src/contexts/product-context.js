@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   createContext,
   useContext,
@@ -25,7 +26,6 @@ const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     fetchProducts({ method: "get", url: "/api/products" });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(
@@ -42,7 +42,6 @@ const ProductProvider = ({ children }) => {
 
   useEffect(() => {
     fetchCategories({ method: "get", url: "/api/categories" });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -64,15 +63,6 @@ const ProductProvider = ({ children }) => {
       state.filterByCategory.length === 0
         ? true
         : state.filterByCategory.includes(x.category)
-    )
-    .filter(
-      (x) =>
-        x.name
-          .toUpperCase()
-          .includes(state.filterBySearch.trim().toUpperCase()) ||
-        x.author
-          .toUpperCase()
-          .includes(state.filterBySearch.trim().toUpperCase())
     )
     .sort(sortByPriceFunc(state.sortByPrice));
 

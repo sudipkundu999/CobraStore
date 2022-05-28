@@ -1,31 +1,37 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { useProducts } from "../contexts";
 import "./component-css/homeHeroSection.css";
 
 export const HomeHeroSection = () => {
+  const location = useLocation();
   const { productReducerDispatch } = useProducts();
-  return (
-    <div
-      className="hero-section"
-      style={{
-        background: `url(${process.env.PUBLIC_URL + "/images/heroImage.jpg"})`,
-      }}
-    >
-      <div className="hero-text">
-        NEW USER OFFER <br />
-        <span className="hero-text-small"> Upto </span>
-        <span className="hero-text-off"> 40% OFF</span>
-        <span className="hero-text-small"> on all products </span>
-      </div>
+  const [carousalImg, setCarousalImg] = useState(1);
 
-      <button className="btn btn-hero">
+  useEffect(() => {
+    if (location.pathname === "/") {
+      let timerId = setInterval(() => {
+        setCarousalImg((prev) => (prev === 3 ? 1 : prev + 1));
+      }, 2000);
+      return () => clearInterval(timerId);
+    }
+  }, [location.pathname]);
+
+  return (
+    <div className="hero-section">
+      <div className="carousal">
+        <img
+          className="img-fluid"
+          src={process.env.PUBLIC_URL + `/images/cs${carousalImg}.jpg`}
+          alt="carousal"
+        />
         <Link
           to="/products"
           onClick={() => productReducerDispatch({ type: "RESET" })}
         >
-          SHOP NOW
+          <button className="btn btn-hero">SHOP NOW</button>
         </Link>
-      </button>
+      </div>
     </div>
   );
 };

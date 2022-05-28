@@ -4,25 +4,56 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 2rem;
+  margin-top: 7.5rem;
+}
+
+.category-card-wrapper {
+  width: 30rem;
+  height: 20rem;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 1.25rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.dark-mode-class .category-card-wrapper {
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 .category-card {
-  width: 22.5rem;
-  height: 18.5rem;
-  border-radius: 10px;
-  overflow: hidden;
-  text-align: center;
-  cursor: pointer;
-  background-color: var(--black);
-  color: var(--white);
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
-.category-card h2 {
-  font-weight: 400;
+.category-hover {
+  position: absolute;
+  font-size: 2rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 
-@media screen and (max-width: 1000px) {
-  .home-categories {
-    margin: 10rem 0;
+.category-hover:hover {
+  opacity: 1;
+}
+
+.category-image {
+  object-fit: cover;
+}
+
+@media screen and (max-width: 860px) {
+  .category-hover {
+    opacity: 1;
   }
 }

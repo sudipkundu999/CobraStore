@@ -70,6 +70,7 @@
   background-color: var(--secondary);
   padding: 2rem 1rem;
   border-radius: 10px;
+  margin: 2rem 0;
 }
 
 .orders-heading {
@@ -96,7 +97,8 @@
 }
 
 .address-details-wrapper,
-.user-orders-summary-wrapper {
+.user-orders-summary-wrapper,
+.profile-details-wrapper {
   min-width: 40rem;
 }
 
@@ -107,6 +109,29 @@
   text-align: center;
   margin-top: 1rem;
   font-weight: 500;
+}
+
+.profile-nav {
+  display: flex;
+  /* background-color: var(--black); */
+}
+
+.tab {
+  background: var(--black);
+  color: var(--white);
+  font-size: 2.2rem;
+  padding: 0.7rem;
+  border-bottom: 3px solid var(--black);
+  min-width: max-content;
+  cursor: pointer;
+  padding-inline: 1.5rem;
+  text-align: center;
+}
+
+.tab-selected {
+  color: var(--nav-hover);
+  border-bottom: 3px solid var(--nav-hover);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 450px) {

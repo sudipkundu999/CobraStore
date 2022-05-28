@@ -23,10 +23,6 @@
   background: #ebecf0;
 }
 
-.card-favourite {
-  z-index: 2;
-}
-
 .products-main .btn-outline,
 .wishlist-main .btn-outline,
 .product-detail-main .btn-outline {
@@ -35,4 +31,11 @@
   padding: 9px 7.5px;
   border: 1px solid var(--secondary);
   cursor: not-allowed;
+}
+
+.card-favourite {
+  background-color: var(--white);
+  padding: 3px 2px 1px 2px;
+  border-radius: 50%;
+  z-index: 1;
 }

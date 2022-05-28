@@ -11,6 +11,17 @@
   text-align: center;
 }
 
+.empty-wishlist,
+.empty-cart {
+  font-size: 2.7rem;
+}
+
+.empty-wishlist a,
+.empty-cart a {
+  text-decoration: underline;
+  color: var(--nav-hover);
+}
+
 .wishlist-main .card {
   background-color: var(--white);
   margin: 1.5rem;
