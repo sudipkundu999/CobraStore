@@ -31,8 +31,9 @@ header {
   padding-bottom: 0;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
   align-content: flex-start;
-  gap: 2rem;
+  gap: 2rem 1rem;
 }
 
 .loading-screen {
@@ -40,6 +41,12 @@ header {
   height: 100%;
   text-align: center;
   font-size: 5rem;
+}
+
+.filter-mobile-btn,
+.close-filter-btn {
+  display: none;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 740px) {
@@ -58,6 +65,35 @@ header {
 
   .products-filter-aside {
     display: none;
+    position: relative;
+  }
+
+  .filter-mobile {
+    position: fixed;
+    display: block;
+    z-index: 10;
+    background-color: var(--white);
+    top: 6.5rem;
+  }
+
+  .close-filter-btn {
+    display: block;
+    position: absolute;
+    right: 2rem;
+    top: 1rem;
+    color: var(--danger);
+  }
+
+  .filter-mobile-btn {
+    display: block;
+    margin: 2rem 0 0 2rem;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .filter-mobile {
+    top: 10.5rem !important;
+    height: 100vh;
   }
 }
 
