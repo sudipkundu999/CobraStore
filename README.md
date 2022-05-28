@@ -1,14 +1,14 @@
-#### Status : 🏗️Under construction 🚧
+### [![Netlify Status](https://api.netlify.com/api/v1/badges/bf1d2919-80af-4853-aeae-9c73956a1ff1/deploy-status)](https://app.netlify.com/sites/cobra-store/deploys)
 
 <div align="center">
 
-# Cobra Store
+<img alt="logo" src="public\images\logo.png" />
 
-### CobraStore is an e-commerce platform for book lovers. You can buy various books in your favourite category.
+# [CobraStore](https://cobra-tube.netlify.app/)
+
+## CobraStore is an e-commerce platform for book lovers.
 
 ![](./showcase.gif)
-
-# [Live Website](https://cobra-store-react.netlify.app)
 
 </div>
 
@@ -16,55 +16,45 @@
 
 ## 📕 Table of Contents
 
-- [Features](#🚀-features)
-- [Instructions to run the app locally](#🔌-instructions-to-run-the-app-locally)
-- [Readme](#⚠️-caution)
+- [Tech Stack](#-tech-stack)
+- [Features](#-features)
+- [Instructions to run the app locally](#-instructions-to-run-the-app-locally)
+
+---
+
+## 👨🏻‍💻 Tech Stack
+
+### Frontend
+
+- [Cobra UI](https://cobra-ui.netlify.app/)
+- [React JS](https://reactjs.org/)
+- [React Router](https://reactrouter.com/)
+- [React Context API](https://reactjs.org/docs/context.html)
+
+### Backend
+
+- [MockBee](https://mockbee.netlify.app/)
 
 ---
 
 ## 🚀 Features
 
-### From **Navbar**
-
-- Navigate to the Wishlist,Cart,Login and User profile page.
-- Clicking on CobraStore navigates back to homepage.
-- Search for products.
-
-### From **Home** page
-
-- Clicking on **Buy Now** takes the user to the products page.
-- Clicking on categories will take the user to the product page and show only products from that category.
-
-### From **Products** page
-
-- Filter the products based on your preference:
-
-  - Sort by Price
-  - Filter by Category
-  - Slider to filter by Price Range
-  - Sort by Ratings
-
-- Add/remove items to your Wishlist
-- Add items to your Cart by clicking on **Add to Cart**. Clicking on **Buy Now** adds the product to cart and takes the user to cart
-
-- On clicking the product name, it will take the user to the product detail page which contains the description of that product.
-
-### From **WishList** page
-
-- Remove Items from your WishList
-- Add items to your Cart
-
-### From **Cart** page
-
-- See the price card, containing total amount that you have to pay.
-- Increase/decrease the quantity of an item
-- Add/remove items to your WishList
-- Remove items from your Cart
-- Clicking on **Place Order** mimics the actual functionality of placing an order.
-
-### Bonus
-
-- Dark Mode
+- Home page
+- Product listing page
+- Single product page
+- User profile page
+- **Sort** & **Filter** products based on _price_,_categories_ & _ratings_
+- **Search** for a product from search bar
+- Functionalities:
+  - Add/remove from **Wishlist**
+  - Add/remove from **Cart**
+  - Address management
+  - Order history
+  - Payment integration using [Razorpay](https://razorpay.com/)
+- Authentication
+- Loading & alerts
+- Dark & Light Mode
+- Fully Responsive
 
 ---
 
@@ -95,14 +85,6 @@ REACT_APP_JWT_SECRET = <JWT_SECRET_KEY_OF_YOUR_CHOICE>
 ```
 npm start
 ```
-
----
-
-## ⚠️ Caution
-
-CobraStore currently runs on a mock backend, [MockBee](https://mockbee.netlify.app/). So, everytime the page reloads a new instance of the server starts. What this means is, data won't persist on reloading the page. However, all other functionality works flawlessly like a real backend.
-
-You can test this, by logging in or signing up then adding a few items to your cart and wishlist then logging out and again repeating the process using different credentials. Now, when you'll login using the 1st credentials you'll notice that the cart and wishlist shows the data as expected. Repeat the same for 2nd credentials and you'll see it is true for this case also. However, remember to not reload at any point during the process as that will start a new instance of the server.
 
 ---
 
